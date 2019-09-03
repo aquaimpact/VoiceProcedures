@@ -15,10 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.voiceprocedures.CRUD_SECTIONS.CreateSection;
-import com.example.voiceprocedures.CRUD_SECTIONS.SectionDelete;
-import com.example.voiceprocedures.CRUD_SECTIONS.SectionDetails;
-import com.example.voiceprocedures.CRUD_SECTIONS.SectionEdit;
 import com.example.voiceprocedures.CRUD_TRANSCRIPT.CreateTranscript;
 import com.example.voiceprocedures.CRUD_TRANSCRIPT.TranscriptDelete;
 import com.example.voiceprocedures.CRUD_TRANSCRIPT.TranscriptDetails;
