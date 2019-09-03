@@ -38,10 +38,10 @@ public class SectionDelete extends AppCompatActivity {
         chaptLinked = (TextView) findViewById(R.id.detailchaptslinkedD);
         confirmDelete = (Button) findViewById(R.id.confirmDeletesectDs);
 
-        final String chaptNames = prf.getString("sectName", null);
+        final String sectNames = prf.getString("sectName", null);
 
 
-        Cursor cursor = db.sectDetails(chaptNames);
+        Cursor cursor = db.sectDetails(sectNames);
         if (cursor.getCount()  == 0){
             System.out.println("NULL");
         }
@@ -52,12 +52,12 @@ public class SectionDelete extends AppCompatActivity {
         subchaptLinked.setText(cursor.getString(cursor.getColumnIndex("subchapterName")));
         chaptLinked.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
 
-        final String chaptID = cursor.getString(5);
+        final String sectID = cursor.getString(5);
 
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.deletesect(chaptNames);
+                db.deletesect(sectNames, sectID);
 //                db.resetrows();
                 Toast.makeText(SectionDelete.this, "Successfully Deleted! Returning Back..." , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SectionDelete.this, MainActivity.class);

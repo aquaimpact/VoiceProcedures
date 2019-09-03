@@ -9,6 +9,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,9 +17,12 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +43,7 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.channels.FileChannel;
 import java.security.spec.ECField;
+import java.util.List;
 
 import static android.provider.CalendarContract.CalendarCache.URI;
 import com.example.voiceprocedures.pathURI;
@@ -46,13 +51,14 @@ import com.opencsv.CSVReader;
 
 import org.w3c.dom.Text;
 
-public class CreateTranscript extends AppCompatActivity {
+public class CreateTranscript extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView importdata, transtext, importimg;
+    private TextView importdata, transtext, importimg, results;
     private ImageView imgview;
     private Button createtrans;
     private EditText transName;
     DatabaseHelper db;
+    private Spinner sectlinkedto;
 
     private String location;
 //    private EditText transtext;
@@ -73,11 +79,26 @@ public class CreateTranscript extends AppCompatActivity {
 
         createtrans = (Button) findViewById(R.id.createtrans);
         transName = (EditText) findViewById(R.id.transname);
+
+        sectlinkedto = (Spinner) findViewById(R.id.sectionlinked);
+
+        results = (TextView) findViewById(R.id.wowtrans);
+        results.setText(null);
+
         transName.setText(null);
 
         location = null;
 
+        List<String> items = db.allsectiondatas();
 
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, items);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        sectlinkedto.setOnItemSelectedListener(this);
+
+        sectlinkedto.setAdapter(dataAdapter);
 
         importdata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +129,7 @@ public class CreateTranscript extends AppCompatActivity {
                 String locations = location;
                 String transtxt = transtext.getText().toString().trim();
                 String transNames = transName.getText().toString().trim();
+                String result = results.getText().toString().trim();
 
                 File files = new File(locations);
                 String filename= locations.substring(locations.lastIndexOf("/")+1);
@@ -127,11 +149,10 @@ public class CreateTranscript extends AppCompatActivity {
                 String confirm = "Nothing Selected";
 
                 //Confirmation for the equals does not work.
-                if (!confirm.trim().equals(transtxt) || transNames.length() > 0){
+                if (!confirm.trim().equals(transtxt) || transNames.length() > 0 || result.length() > 0){
 
-                    long val = db.addTrans(transNames, transtxt, locations);
+                    long val = db.addTrans(transNames, transtxt, locations, result);
 
-//                    System.out.println("LOL");
                     if(val > 0){
                         Toast.makeText(CreateTranscript.this, "Successfully Created Transcript!", Toast.LENGTH_SHORT).show();
 
@@ -215,8 +236,7 @@ public class CreateTranscript extends AppCompatActivity {
 
     }
 
-    public static void copyFile(File src, File dst) throws IOException
-    {
+    public static void copyFile(File src, File dst) throws IOException {
         FileChannel inChannel = new FileInputStream(src).getChannel();
         FileChannel outChannel = new FileOutputStream(dst).getChannel();
         try
@@ -232,6 +252,28 @@ public class CreateTranscript extends AppCompatActivity {
         }
     }
 
-//                Toast.makeText(CreateTranscript.this, filepath, Toast.LENGTH_SHORT).show();
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
+        // On selecting a spinner item
+        String label = parent.getItemAtPosition(position).toString();
+
+        Cursor cursor = db.sectDetails(label);
+
+        cursor.moveToFirst();
+
+        results.setText(cursor.getString(cursor.getColumnIndex("ID")));
+
+        // Showing selected spinner item
+//        Toast.makeText(parent.getContext(), "You selected: " + label,
+//                Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
 }
 

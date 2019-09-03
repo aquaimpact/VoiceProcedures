@@ -52,10 +52,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE studentAccount (ID INTEGER PRIMARY KEY AUTOINCREMENT, studentName Text NOT NULL, appointment Text NOT NULL, department Text NOT NULL, password Text NOT NULL)");
+
         sqLiteDatabase.execSQL("CREATE TABLE chapters (ID INTEGER PRIMARY KEY AUTOINCREMENT,chapterName Text NOT NULL)");
+
         sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID))");
+
         sqLiteDatabase.execSQL("CREATE TABLE sections (ID INTEGER PRIMARY KEY AUTOINCREMENT, sectionName Text NOT NULL, subchapterID INTEGER, CONSTRAINT fk_subchapter FOREIGN KEY (subchapterID) REFERENCES subchapters(ID))");
-        sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID))");
+
+        sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, " +
+                "CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID))");
+
         sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP" +
                 ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID), CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID))");
     }
@@ -324,14 +330,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Query) ;
     }
 
-    public void deletesect(String sectname){
+    public void deletesect(String sectname, String sectID){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "DELETE FROM " + TABLE_NAME4 + " WHERE " + COL4_1 + " = '" + sectname + "'";
 
         //FOR SAFE DELETE IN DB
-//        String Query2 = "DELETE FROM " + TABLE_NAME4 +" WHERE subchapterID ='" + chaptID + "'" ;
+        String Query2 = "DELETE FROM " + TABLE_NAME5 +" WHERE sectionID ='" + sectID + "'" ;
         db.execSQL(Query);
-//        db.execSQL(Query2);
+        db.execSQL(Query2);
         db.close();
 
     }
@@ -368,7 +374,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         contentValues.put("image", imgLocation);
 
-        contentValues.put("sectionID", sectionID);
+        contentValues.put("sectionID", Integer.parseInt(sectionID));
 
         long res= db.insert("transcripts", null, contentValues);
         db.close();
@@ -401,7 +407,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor transDetails(@NonNull String transname){
         SQLiteDatabase db = this.getWritableDatabase();
 //      "' AND ID = '" + StuID +
-        String Query = "SELECT * FROM transcripts WHERE transcriptName ='" + transname + "'";
+        String Query = "SELECT * FROM (((transcripts INNER JOIN sections ON transcripts.sectionID = sections.ID) INNER JOIN subchapters ON sections.subchapterID = subchapters.ID) INNER JOIN chapters ON chapters.ID = subchapters.chapterID) WHERE transcriptName ='" + transname + "'";
 //      String Query2 = "SELECT * FROM chapters WHERE chapterName = '" + chaptname + "'";
 //      String Query = "SELECT * FROM studentAccount WHERE ID = '" + StuID + "'";
         Cursor cursor = db.rawQuery(Query,null);
