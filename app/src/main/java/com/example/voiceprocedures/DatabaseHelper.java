@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE chapters (ID INTEGER PRIMARY KEY AUTOINCREMENT,chapterName Text NOT NULL)");
         sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID))");
         sqLiteDatabase.execSQL("CREATE TABLE sections (ID INTEGER PRIMARY KEY AUTOINCREMENT, sectionName Text NOT NULL, subchapterID INTEGER, CONSTRAINT fk_subchapter FOREIGN KEY (subchapterID) REFERENCES subchapters(ID))");
-        sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL,transcript Text NOT NULL, image Text)");
+        sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID))");
         sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP" +
                 ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID), CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID))");
     }
@@ -344,7 +344,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public long addTrans(String transName, String transcript, String imgLocation ){
+    public List<String> allsectiondatas(){
+        List<String> items = new ArrayList<String>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM sections";
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                items.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        return items;
+    }
+
+    public long addTrans(String transName, String transcript, String imgLocation, String sectionID ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("transcriptName", transName);
@@ -352,6 +367,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("transcript", transcript);
 
         contentValues.put("image", imgLocation);
+
+        contentValues.put("sectionID", sectionID);
 
         long res= db.insert("transcripts", null, contentValues);
         db.close();
