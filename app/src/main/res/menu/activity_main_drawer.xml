@@ -46,6 +46,10 @@
                     android:id="@+id/create_trans"
                     android:icon="@drawable/foldertreedb"
                     android:title="Transcripts in DB" />
+                <item
+                    android:id="@+id/create_voice"
+                    android:icon="@drawable/foldertreedb"
+                    android:title="Voice Clips in DB" />
             </menu>
         </item>
     </group>

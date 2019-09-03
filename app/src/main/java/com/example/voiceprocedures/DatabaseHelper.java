@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, " +
                 "CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID))");
 
-        sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP" +
+        sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, recordingName Text NOT NULL, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP" +
                 ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID), CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID))");
     }
 
@@ -428,6 +428,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "UPDATE " + TABLE_NAME5 + " SET " + COL5_1 + " = '" + transName + "', transcript = '" + transTxt + "', image = '" + imglocation +"'" + " WHERE "+ COL5_1  + " = '" + oldtransName + "'";
         db.execSQL(Query) ;
+    }
+
+    //VoiceClips
+    public Cursor allvoiceData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM voiceRecordings";
+        Cursor cursor = db.rawQuery(Query, null);
+        return cursor;
+    }
+
+    public Cursor counterVoice(String transID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Query = "SELECT COUNT(transcriptID) FROM voiceRecordings WHERE transcriptID = " + Integer.parseInt(transID);
+        Cursor cursor = db.rawQuery(Query,null);
+        return cursor;
     }
 
     //MAIN FUNCTIONS

@@ -2,4 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/voicetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voice Clips"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/createnewVoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:layout_marginLeft="10dp"
+        android:text="Create New Voice Clip"
+        android:layout_below="@id/voicetitle"/>
+
+    <ExpandableListView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/expListsVoice"
+        android:layout_below="@+id/createnewVoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ExpandableListView>
+
 </RelativeLayout>

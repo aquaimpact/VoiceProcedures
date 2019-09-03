@@ -11,6 +11,7 @@ import com.example.voiceprocedures.Fragments.SubChapterDBFragment;
 import com.example.voiceprocedures.Fragments.SubChapterFragment;
 import com.example.voiceprocedures.Fragments.TranscriptDBFragment;
 import com.example.voiceprocedures.Fragments.UserFragment;
+import com.example.voiceprocedures.Fragments.VoiceRecordingDBFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -161,6 +162,9 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.create_trans){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new TranscriptDBFragment()).commit();
+        }else if (id == R.id.create_voice){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new VoiceRecordingDBFragment()).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
