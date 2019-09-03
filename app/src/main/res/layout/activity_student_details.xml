@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_STUDENT.StudentDetails">
+
+    <TextView
+        android:id="@+id/studetailtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Detail"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDStu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/studetailtitle"/>
+
+    <TextView
+        android:layout_below="@+id/IDStu"
+        android:id="@+id/detailStuID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/NameStu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuID"/>
+
+    <TextView
+        android:layout_below="@+id/NameStu"
+        android:id="@+id/detailStuName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/ApptStu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Appointment:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuName"/>
+
+    <TextView
+        android:layout_below="@+id/ApptStu"
+        android:id="@+id/detailStuAppt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/DeptStu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Department:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuAppt"/>
+
+    <TextView
+        android:layout_below="@+id/DeptStu"
+        android:id="@+id/detailStuDept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"/>
+
+    <TextView
+        android:id="@+id/StuPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Password:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuDept"/>
+
+    <TextView
+        android:layout_below="@+id/StuPass"
+        android:id="@+id/detailStuPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"/>
+
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_SECTIONS.CreateSection">
+
+    <TextView
+        android:id="@+id/createsecticon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Section"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="35dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section Name:"
+        android:layout_above="@+id/sectname"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <EditText
+        android:layout_below="@+id/createsecticon"
+        android:paddingLeft="15dp"
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/sectname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="45dp"
+        android:ems="10"
+        android:hint="Section Name"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter Linked To:"
+        android:layout_above="@+id/subchapterlinked"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/subchapterlinked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@+id/sectname"
+        android:spinnerMode="dropdown"
+        />
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/wowSect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/createsect"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <!--<EditText-->
+    <!--android:paddingLeft="15dp"-->
+    <!--android:paddingBottom="8dp"-->
+    <!--android:paddingRight="15dp"-->
+    <!--android:paddingTop="8dp"-->
+    <!--android:background="@drawable/outline"-->
+    <!--android:id="@+id/appoint"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="50dp"-->
+    <!--android:layout_marginRight="50dp"-->
+    <!--android:layout_marginBottom="45dp"-->
+    <!--android:layout_below="@+id/stuname"-->
+    <!--android:ems="10"-->
+    <!--android:inputType="text"-->
+    <!--android:hint="Appointment"/>-->
+
+    <Button
+        android:id="@+id/createsect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subchapterlinked"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/outline"
+        android:text="Create Section" />
+
+</RelativeLayout>

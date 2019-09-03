@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_SECTIONS.SectionDetails">
+
+    <TextView
+        android:id="@+id/sectdetailtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section Detail"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDsect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/sectdetailtitle"/>
+
+    <TextView
+        android:layout_below="@+id/IDsect"
+        android:id="@+id/detailsectID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/Namesect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsectID"/>
+
+    <TextView
+        android:layout_below="@+id/Namesect"
+        android:id="@+id/detailsectName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/linkedsubchapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsectName"/>
+
+    <TextView
+        android:layout_below="@+id/linkedsubchapt"
+        android:id="@+id/detailsectlinked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/linkedchapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsectlinked"/>
+
+    <TextView
+        android:layout_below="@+id/linkedchapt"
+        android:id="@+id/detailchaptlinked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+</RelativeLayout>

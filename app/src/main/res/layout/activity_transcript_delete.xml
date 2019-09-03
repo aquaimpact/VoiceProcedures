@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_TRANSCRIPT.TranscriptDelete">
+
+    <TextView
+        android:id="@+id/transdeltitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Transcript"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <ScrollView
+        android:layout_below="@+id/transdeltitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:id="@+id/IDtransD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript ID:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <TextView
+                android:layout_below="@+id/IDtransD"
+                android:id="@+id/detailtransIDD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/NametransD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Name:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransIDD"/>
+
+            <TextView
+                android:layout_below="@+id/NametransD"
+                android:id="@+id/detailtransNameD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/TxttransD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Text:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransNameD"/>
+
+            <TextView
+                android:layout_below="@+id/TxttransD"
+                android:id="@+id/detailtransTxtD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/imgtransD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Image:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransTxtD"/>
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_below="@+id/imgtransD"
+                android:id="@+id/detailtransimgD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginBottom="15dp"
+                />
+
+            <TextView
+                android:id="@+id/dsdsdschapt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold|italic"
+                android:text="Are You Sure You Want To DELETE This?"
+                android:textSize="20dp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransimgD"/>
+            <Button
+                android:id="@+id/confirmDeletetrans"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/dsdsdschapt"
+                android:layout_width="150dp"
+                android:background="@drawable/outline"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:layout_marginBottom="15dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

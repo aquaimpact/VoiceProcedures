@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_STUDENT.StudentDelete">
+
+    <TextView
+        android:id="@+id/studetailtitles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Student"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDStus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/studetailtitles"/>
+
+    <TextView
+        android:layout_below="@+id/IDStus"
+        android:id="@+id/detailStuIDs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/NameStus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuIDs"/>
+
+    <TextView
+        android:layout_below="@+id/NameStus"
+        android:id="@+id/detailStuNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/ApptStus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Appointment:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuNames"/>
+
+    <TextView
+        android:layout_below="@+id/ApptStus"
+        android:id="@+id/detailStuAppts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/DeptStus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Department:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuAppts"/>
+
+    <TextView
+        android:layout_below="@+id/DeptStus"
+        android:id="@+id/detailStuDepts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"/>
+
+    <TextView
+        android:id="@+id/StuPasss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Password:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuDepts"/>
+
+    <TextView
+        android:layout_below="@+id/StuPasss"
+        android:id="@+id/detailStuPasss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Student Detail Stuff"/>
+
+    <TextView
+        android:id="@+id/dsdsds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:text="Are You Sure You Want To DELETE This?"
+        android:textSize="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailStuPasss"/>
+    <Button
+        android:id="@+id/confirmDelete"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/dsdsds"
+        android:layout_width="150dp"
+        android:background="@drawable/outline"
+        android:layout_height="wrap_content"
+        android:text="YES"/>
+</RelativeLayout>

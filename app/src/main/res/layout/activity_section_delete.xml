@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_SECTIONS.SectionDelete">
+
+    <TextView
+        android:id="@+id/sectdetailtitleD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Section"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDsectD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/sectdetailtitleD"/>
+
+    <TextView
+        android:layout_below="@+id/IDsectD"
+        android:id="@+id/detailsectIDD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/NamesectD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsectIDD"/>
+
+    <TextView
+        android:layout_below="@+id/NamesectD"
+        android:id="@+id/detailsectNameD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/linkedsectD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsectNameD"/>
+
+    <TextView
+        android:layout_below="@+id/linkedsectD"
+        android:id="@+id/detailsectlinkedD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/linkedchaptsD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsectlinkedD"/>
+
+    <TextView
+        android:layout_below="@+id/linkedchaptsD"
+        android:id="@+id/detailchaptslinkedD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/dsdsdssectD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:text="Are You Sure You Want To DELETE This?"
+        android:textSize="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailchaptslinkedD"/>
+
+    <Button
+        android:id="@+id/confirmDeletesectDs"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/dsdsdssectD"
+        android:layout_width="150dp"
+        android:background="@drawable/outline"
+        android:layout_height="wrap_content"
+        android:text="YES"/>
+
+</RelativeLayout>

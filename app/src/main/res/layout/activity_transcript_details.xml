@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_TRANSCRIPT.TranscriptDetails">
+
+    <TextView
+        android:id="@+id/transdetailtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Detail"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <ScrollView
+        android:layout_below="@+id/transdetailtitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/IDtrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript ID:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <TextView
+                android:layout_below="@+id/IDtrans"
+                android:id="@+id/detailtransID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/Nametrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Name:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransID"/>
+
+            <TextView
+                android:layout_below="@+id/Nametrans"
+                android:id="@+id/detailtransName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/Txttrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Text:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransName"/>
+
+            <TextView
+                android:layout_below="@+id/Txttrans"
+                android:id="@+id/detailtransTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/imgtrans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Image:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailtransTxt"/>
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_below="@+id/imgtrans"
+                android:id="@+id/detailtransimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginBottom="15dp"
+                />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

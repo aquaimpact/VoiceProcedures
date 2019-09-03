@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_chap"
+            android:icon="@drawable/folder"
+            android:title="Chapter Selection" />
+        <item
+            android:id="@+id/nav_subchap"
+            android:icon="@drawable/treefolder"
+            android:title="Sub-Chapter Selection" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
+        <!--<item-->
+            <!--android:id="@+id/nav_tools"-->
+            <!--android:icon="@drawable/ic_menu_manage"-->
+            <!--android:title="@string/menu_tools" />-->
+
+        <item android:title="Administrator Tools"
+            android:visible="false"
+            android:id="@+id/admintools">
+
+            <menu>
+                <item
+                    android:id="@+id/create_user"
+                    android:icon="@drawable/createuser"
+                    android:title="Users in DB" />
+                <item
+                    android:id="@+id/create_chapters"
+                    android:icon="@drawable/folderdb"
+                    android:title="Chapters in DB" />
+                <item
+                    android:id="@+id/create_subchapters"
+                    android:icon="@drawable/foldertreedb"
+                    android:title="Sub Chapters in DB" />
+                <item
+                    android:id="@+id/create_sections"
+                    android:icon="@drawable/foldertreedb"
+                    android:title="Sections in DB" />
+                <item
+                    android:id="@+id/create_trans"
+                    android:icon="@drawable/foldertreedb"
+                    android:title="Transcripts in DB" />
+            </menu>
+        </item>
+    </group>
+
+
+
+</menu>

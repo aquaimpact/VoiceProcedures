@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_SUBCHAPTER.SubChapterDelete">
+
+    <TextView
+        android:id="@+id/subchaptdetailtitleD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Sub Chapter"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDsubchaptD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/subchaptdetailtitleD"/>
+
+    <TextView
+        android:layout_below="@+id/IDsubchaptD"
+        android:id="@+id/detailsubchaptIDD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/NamesubchaptD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptIDD"/>
+
+    <TextView
+        android:layout_below="@+id/NamesubchaptD"
+        android:id="@+id/detailsubchaptNameD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/linkedsubchaptD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptNameD"/>
+
+    <TextView
+        android:layout_below="@+id/linkedsubchaptD"
+        android:id="@+id/detailsubchaptlinkedD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/dsdsdssubchaptD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:text="Are You Sure You Want To DELETE This?"
+        android:textSize="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptlinkedD"/>
+
+    <Button
+        android:id="@+id/confirmDeletesubchaptD"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/dsdsdssubchaptD"
+        android:layout_width="150dp"
+        android:background="@drawable/outline"
+        android:layout_height="wrap_content"
+        android:text="YES"/>
+
+</RelativeLayout>

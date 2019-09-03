@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_CHAPTER.ChapterDelete">
+
+    <TextView
+        android:id="@+id/chaptdetailtitles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Chapter"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDchapts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/chaptdetailtitles"/>
+
+    <TextView
+        android:layout_below="@+id/IDchapts"
+        android:id="@+id/detailchaptIDs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/Namechapts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailchaptIDs"/>
+
+    <TextView
+        android:layout_below="@+id/Namechapts"
+        android:id="@+id/detailchaptNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/dsdsdschapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:text="Are You Sure You Want To DELETE This?"
+        android:textSize="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailchaptNames"/>
+    <Button
+        android:id="@+id/confirmDeletechapt"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/dsdsdschapt"
+        android:layout_width="150dp"
+        android:background="@drawable/outline"
+        android:layout_height="wrap_content"
+        android:text="YES"/>
+
+</RelativeLayout>

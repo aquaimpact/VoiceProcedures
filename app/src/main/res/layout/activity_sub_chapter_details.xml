@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_SUBCHAPTER.SubChapterDetails">
+
+    <TextView
+        android:id="@+id/subchaptdetailtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter Detail"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/IDsubchapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter ID:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/subchaptdetailtitle"/>
+
+    <TextView
+        android:layout_below="@+id/IDsubchapt"
+        android:id="@+id/detailsubchaptID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/Namesubchapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sub Chapter Name:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptID"/>
+
+    <TextView
+        android:layout_below="@+id/Namesubchapt"
+        android:id="@+id/detailsubchaptName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+    <TextView
+        android:id="@+id/linkedsubchapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptName"/>
+
+    <TextView
+        android:layout_below="@+id/linkedsubchapt"
+        android:id="@+id/detailsubchaptlinked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_TRANSCRIPT.CreateTranscript">
+
+    <TextView
+        android:id="@+id/createtransicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Transcript"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="13dp"
+        />
+
+    <ScrollView
+        android:id="@+id/lolscrol"
+        android:layout_below="@id/createtransicon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/qqtxt"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Transcript Name:"
+                android:textSize="18sp" />
+
+            <EditText
+                android:layout_below="@+id/qqtxt"
+                android:id="@+id/transname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/outline"
+                android:hint="Transcript Name"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:paddingTop="8dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Text:"
+                android:layout_above="@+id/transtext"
+                android:layout_marginLeft="50dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+
+            <TextView
+                android:id="@+id/importdata"
+                android:textStyle="bold|italic"
+                android:textColor="#008080"
+                android:layout_marginStart="180dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMPORT TEXT"
+                android:layout_above="@+id/transtext"
+                android:layout_marginLeft="50dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <ScrollView
+                android:id="@+id/transtext"
+                android:layout_below="@+id/transname"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+
+                        android:id="@+id/transtext2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/outline"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="15dp"
+                        android:paddingBottom="8dp"
+                        android:textSize="18sp"
+                        android:text="Nothing Selected"/>
+
+                </RelativeLayout>
+            </ScrollView>
+
+            <TextView
+                android:layout_marginTop="21dp"
+                android:id="@+id/importimg"
+                android:textStyle="bold|italic"
+                android:textColor="#008080"
+                android:layout_marginStart="195dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMPORT IMAGE"
+                android:layout_below="@+id/transtext"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/qqtxt2"
+                android:layout_below="@+id/transtext"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Transcript Image:"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:layout_below="@+id/qqtxt2"
+                android:id="@+id/transpic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp" />
+
+            <Button
+                android:id="@+id/createtrans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/transpic"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/outline"
+                android:text="Create Transcript"
+                android:layout_marginBottom="15dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

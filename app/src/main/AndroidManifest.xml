@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.voiceprocedures">
+
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".CRUD_TRANSCRIPT.TranscriptEdit"></activity>
+        <activity android:name=".CRUD_TRANSCRIPT.TranscriptDelete" />
+        <activity android:name=".CRUD_TRANSCRIPT.TranscriptDetails" />
+        <activity android:name=".CRUD_TRANSCRIPT.CreateTranscript" />
+        <activity android:name=".CRUD_SECTIONS.SectionDelete" />
+        <activity android:name=".CRUD_SECTIONS.SectionEdit" />
+        <activity android:name=".CRUD_SECTIONS.SectionDetails" />
+        <activity android:name=".CRUD_SECTIONS.CreateSection" />
+        <activity android:name=".CRUD_SUBCHAPTER.SubChapterDelete" />
+        <activity android:name=".CRUD_SUBCHAPTER.SubChapterEdit" />
+        <activity android:name=".CRUD_SUBCHAPTER.SubChapterDetails" />
+        <activity android:name=".CRUD_SUBCHAPTER.SubChapterCreate" />
+        <activity android:name=".CRUD_CHAPTER.ChapterEdit" />
+        <activity android:name=".CRUD_CHAPTER.ChapterDelete" />
+        <activity android:name=".CRUD_CHAPTER.ChapterDetails" />
+        <activity android:name=".CRUD_CHAPTER.CreateChapter" />
+        <activity android:name=".CRUD_STUDENT.StudentDelete" />
+        <activity android:name=".CRUD_STUDENT.StudentEdit" />
+        <activity android:name=".CRUD_STUDENT.StudentDetails" />
+        <activity android:name=".CRUD_STUDENT.CreateUser" />
+        <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
