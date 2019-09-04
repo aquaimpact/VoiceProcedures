@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, " +
                 "CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID))");
 
-        sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, recordingName Text NOT NULL, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP" +
+        sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, recordingName Text NOT NULL, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP, recordingPath Text NOT NULL" +
                 ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID), CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID))");
     }
 
@@ -482,6 +482,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        String Query = "SELECT * FROM studentAccount WHERE ID = '" + StuID + "'";
         Cursor cursor = db.rawQuery(Query,null);
         return cursor;
+    }
+
+    public long addVoice(String recordingName, String studentID, String transcriptID, String recordingPath ){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("recordingName", recordingName);
+        contentValues.put("studentID", Integer.parseInt(studentID));
+        contentValues.put("transcriptID", Integer.parseInt(transcriptID));
+        contentValues.put("recordingPath", recordingPath);
+
+        long res= db.insert("voiceRecordings", null, contentValues);
+        db.close();
+        return res;
+    }
+
+    public void preadd(String transresult){
+        Cursor cursor = counterVoice(transresult);
+        cursor.moveToFirst();
+        String count = cursor.getString(cursor.getColumnIndex("COUNT(transcriptID)"));
     }
 
     //MAIN FUNCTIONS
