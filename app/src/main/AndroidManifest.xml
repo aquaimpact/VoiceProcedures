@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CRUD_VOICERECORDING.CreateVoiceClips"></activity>
+        <activity android:name=".CRUD_VOICERECORDING.VoiceClipsDelete"></activity>
+        <activity android:name=".CRUD_VOICERECORDING.VoiceClipsDetail" />
+        <activity android:name=".CRUD_VOICERECORDING.CreateVoiceClips" />
         <activity android:name=".CRUD_TRANSCRIPT.TranscriptEdit" />
         <activity android:name=".CRUD_TRANSCRIPT.TranscriptDelete" />
         <activity android:name=".CRUD_TRANSCRIPT.TranscriptDetails" />
@@ -33,7 +35,8 @@
         <activity android:name=".CRUD_STUDENT.StudentEdit" />
         <activity android:name=".CRUD_STUDENT.StudentDetails" />
         <activity android:name=".CRUD_STUDENT.CreateUser" />
-        <activity android:name=".Login"
+        <activity
+            android:name=".Login"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

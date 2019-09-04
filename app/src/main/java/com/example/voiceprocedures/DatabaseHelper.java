@@ -486,7 +486,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long addVoice(String recordingName, String studentID, String transcriptID, String recordingPath ){
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues contentValues = new ContentValues();
         contentValues.put("recordingName", recordingName);
         contentValues.put("studentID", Integer.parseInt(studentID));
@@ -502,6 +501,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = counterVoice(transresult);
         cursor.moveToFirst();
         String count = cursor.getString(cursor.getColumnIndex("COUNT(transcriptID)"));
+    }
+
+    public Cursor voiceDetails(@NonNull String voicename){
+        SQLiteDatabase db = this.getWritableDatabase();
+//      "' AND ID = '" + StuID +
+        String Query = "SELECT * FROM ((voiceRecordings INNER JOIN transcripts ON voiceRecordings.transcriptID = transcripts.transcriptID) INNER JOIN studentAccount ON voiceRecordings.studentID = studentAccount.ID) WHERE recordingName ='" + voicename + "'";
+//      String Query2 = "SELECT * FROM chapters WHERE chapterName = '" + chaptname + "'";
+//      String Query = "SELECT * FROM studentAccount WHERE ID = '" + StuID + "'";
+        Cursor cursor = db.rawQuery(Query,null);
+        return cursor;
     }
 
     //MAIN FUNCTIONS

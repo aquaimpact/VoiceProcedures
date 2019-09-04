@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CRUD_TRANSCRIPT.TranscriptDetails">
+    tools:context=".CRUD_VOICERECORDING.VoiceClipsDetail">
 
     <TextView
-        android:id="@+id/transdetailtitle"
+        android:id="@+id/voicedetailtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Transcript Detail"
+        android:text="Voice Clip Detail"
         android:textSize="30dp"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="10dp"
@@ -18,7 +18,7 @@
         />
 
     <ScrollView
-        android:layout_below="@+id/transdetailtitle"
+        android:layout_below="@+id/voicedetailtitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -27,17 +27,17 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/IDtrans"
+                android:id="@+id/IDvoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Transcript ID:"
+                android:text="Voice Recording ID:"
                 android:textSize="18sp"
                 android:layout_marginLeft="12dp"
                 />
 
             <TextView
-                android:layout_below="@+id/IDtrans"
-                android:id="@+id/detailtransID"
+                android:layout_below="@+id/IDvoice"
+                android:id="@+id/detailvoiceID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -47,18 +47,18 @@
                 />
 
             <TextView
-                android:layout_below="@+id/detailtransID"
-                android:id="@+id/Linkedtrans"
+                android:layout_below="@+id/detailvoiceID"
+                android:id="@+id/Linkedpt1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Section Linked To:"
+                android:text="Created By:"
                 android:textSize="18sp"
                 android:layout_marginLeft="12dp"
                 />
 
             <TextView
-                android:layout_below="@+id/Linkedtrans"
-                android:id="@+id/detailtransLinked"
+                android:layout_below="@+id/Linkedpt1"
+                android:id="@+id/detailpt1Linked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -68,18 +68,18 @@
                 />
 
             <TextView
-                android:layout_below="@+id/detailtransLinked"
-                android:id="@+id/Linkedtrans2"
+                android:layout_below="@+id/detailpt1Linked"
+                android:id="@+id/Linkedpt2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sub Chapter Linked To:"
+                android:text="Transcript Linked To:"
                 android:textSize="18sp"
                 android:layout_marginLeft="12dp"
                 />
 
             <TextView
-                android:layout_below="@+id/Linkedtrans2"
-                android:id="@+id/detailtransLinked2"
+                android:layout_below="@+id/Linkedpt2"
+                android:id="@+id/detailpt2Linked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -89,18 +89,18 @@
                 />
 
             <TextView
-                android:layout_below="@+id/detailtransLinked2"
-                android:id="@+id/Linkedtrans3"
+                android:layout_below="@+id/detailpt2Linked"
+                android:id="@+id/datecreated"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chapter Linked To:"
+                android:text="Date and Time Created:"
                 android:textSize="18sp"
                 android:layout_marginLeft="12dp"
                 />
 
             <TextView
-                android:layout_below="@+id/Linkedtrans3"
-                android:id="@+id/detailtransLinked3"
+                android:layout_below="@+id/datecreated"
+                android:id="@+id/detaildatevoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -110,65 +110,23 @@
                 />
 
             <TextView
-                android:id="@+id/Nametrans"
+                android:id="@+id/pathvoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Transcript Name:"
+                android:text="Voice Clip Path:"
                 android:textSize="18sp"
                 android:layout_marginLeft="12dp"
-                android:layout_below="@+id/detailtransLinked3"/>
+                android:layout_below="@+id/detaildatevoice"/>
 
             <TextView
-                android:layout_below="@+id/Nametrans"
-                android:id="@+id/detailtransName"
+                android:layout_below="@+id/pathvoice"
+                android:id="@+id/detailclipPath"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginBottom="15dp"
                 android:text="Transcript Detail Stuff"
-                />
-
-            <TextView
-                android:id="@+id/Txttrans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Transcript Text:"
-                android:textSize="18sp"
-                android:layout_marginLeft="12dp"
-                android:layout_below="@+id/detailtransName"/>
-
-            <TextView
-                android:layout_below="@+id/Txttrans"
-                android:id="@+id/detailtransTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginRight="14dp"
-                android:layout_marginBottom="15dp"
-                android:text="Transcript Detail Stuff"
-                />
-
-            <TextView
-                android:id="@+id/imgtrans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Transcript Image:"
-                android:textSize="18sp"
-                android:layout_marginLeft="12dp"
-                android:layout_below="@+id/detailtransTxt"/>
-
-            <ImageView
-                android:adjustViewBounds="true"
-                android:layout_below="@+id/imgtrans"
-                android:id="@+id/detailtransimg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="14dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginBottom="15dp"
                 />
 
         </RelativeLayout>
