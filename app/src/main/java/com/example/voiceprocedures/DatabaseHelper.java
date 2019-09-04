@@ -445,6 +445,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public List<String> allstudatas(){
+        List<String> items = new ArrayList<String>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM studentAccount";
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                items.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        return items;
+    }
+
+    public List<String> alltransdatas(){
+        List<String> items = new ArrayList<String>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM transcripts";
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                items.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+
+        return items;
+    }
+
+    public Cursor transDetails2(@NonNull String transname){
+        SQLiteDatabase db = this.getWritableDatabase();
+//      "' AND ID = '" + StuID +
+        String Query = "SELECT * FROM transcripts WHERE transcriptName = '" + transname + "'";
+//        String Query = "SELECT * FROM studentAccount WHERE ID = '" + StuID + "'";
+        Cursor cursor = db.rawQuery(Query,null);
+        return cursor;
+    }
+
     //MAIN FUNCTIONS
     public void DELETE_DB(){
         SQLiteDatabase db = this.getWritableDatabase();

@@ -63,6 +63,7 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
     private String location;
 //    private EditText transtext;
     public static final int requestcode = 1;
+    public static final int requestcode2 = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +120,7 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
             public void onClick(View view) {
                 Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
                 photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, 5);
+                startActivityForResult(photoPickerIntent, requestcode2);
             }
         });
 
@@ -172,65 +173,65 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCodes, int resultCode, Intent data) {
         if (data == null)
             return;
 
-        switch (requestCode) {
-            case requestcode:
-                Uri filepath = data.getData();
+        if (requestCodes == requestcode) {
+            Uri filepath = data.getData();
+            try {
+                String fullpath = pathURI.getPath(this, filepath);
                 try {
-                    String fullpath = pathURI.getPath(this, filepath);
-                    try {
-                        FileReader filess = new FileReader(fullpath);
-                        BufferedReader buffer = new BufferedReader(filess);
-                        ContentValues contentValues = new ContentValues();
+                    FileReader filess = new FileReader(fullpath);
+                    BufferedReader buffer = new BufferedReader(filess);
+                    ContentValues contentValues = new ContentValues();
 
-                        String[] str = buffer.readLine().split(",", 2);
-                        String ID = str[0];
-                        String Texts = str[1].replace("\"", "");
+                    String[] str = buffer.readLine().split(",", 2);
+                    String ID = str[0];
+                    String Texts = str[1].replace("\"", "");
 
-                        System.out.println(Texts);
-                        transtext.setText(Texts);
-                        Toast.makeText(CreateTranscript.this, "Succesfully Imported!", Toast.LENGTH_SHORT).show();
+                    System.out.println(Texts);
+                    transtext.setText(Texts);
+                    Toast.makeText(CreateTranscript.this, "Succesfully Imported!", Toast.LENGTH_SHORT).show();
 
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-                }catch (Exception ee) {
-
-                    File file = new File(filepath.getPath());
-                    final String[] split = file.getPath().split(":");//split the path.
-                    String files = split[1];
-                    try {
-                        FileReader filess = new FileReader(files);
-                        BufferedReader buffer = new BufferedReader(filess);
-                        ContentValues contentValues = new ContentValues();
-
-                        String[] str = buffer.readLine().split(",", 2);
-                        String ID = str[0];
-                        String Texts = str[1].replace("\"", "");
-
-                        System.out.println(Texts);
-                        transtext.setText(Texts);
-                        Toast.makeText(CreateTranscript.this, "Succesfully Imported!", Toast.LENGTH_SHORT).show();
-
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
-            case 5:
-                Uri uri = data.getData();
-                imgview.setImageURI(uri);
+            } catch (Exception ee) {
+
+                File file = new File(filepath.getPath());
+                final String[] split = file.getPath().split(":");//split the path.
+                String files = split[1];
                 try {
-                    String fullpath = pathURI.getPath(this, uri);
-                    location = fullpath;
-                }catch (Exception e){
-                    File file = new File(uri.getPath());
-                    final String[] split = file.getPath().split(":");//split the path.
-                    String files = split[1];
-                    location = files;
+                    FileReader filess = new FileReader(files);
+                    BufferedReader buffer = new BufferedReader(filess);
+                    ContentValues contentValues = new ContentValues();
+
+                    String[] str = buffer.readLine().split(",", 2);
+                    String ID = str[0];
+                    String Texts = str[1].replace("\"", "");
+
+                    System.out.println(Texts);
+                    transtext.setText(Texts);
+                    Toast.makeText(CreateTranscript.this, "Succesfully Imported!", Toast.LENGTH_SHORT).show();
+
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
+            }
+        }
+        else if (requestCodes == requestcode2){
+            Uri uri = data.getData();
+            imgview.setImageURI(uri);
+            try {
+                String fullpath = pathURI.getPath(this, uri);
+                location = fullpath;
+            }catch (Exception e){
+                File file = new File(uri.getPath());
+                final String[] split = file.getPath().split(":");//split the path.
+                String files = split[1];
+                location = files;
+            }
         }
 
 

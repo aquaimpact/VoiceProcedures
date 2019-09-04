@@ -21,6 +21,7 @@ import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterCreate;
 import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterDelete;
 import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterDetails;
 import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterEdit;
+import com.example.voiceprocedures.CRUD_VOICERECORDING.CreateVoiceClips;
 import com.example.voiceprocedures.DatabaseHelper;
 import com.example.voiceprocedures.ExpendableListAdapter;
 import com.example.voiceprocedures.R;
@@ -106,8 +107,8 @@ public class VoiceRecordingDBFragment extends Fragment {
     }
 
     private void userCreation(){
-//        Intent intent = new Intent(getActivity(), SubChapterCreate.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(), CreateVoiceClips.class);
+        startActivity(intent);
     }
 
     private void initData() {
