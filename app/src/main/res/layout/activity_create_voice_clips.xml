@@ -7,10 +7,10 @@
     tools:context=".CRUD_VOICERECORDING.CreateVoiceClips">
 
     <TextView
-        android:id="@+id/createsubchapticon"
+        android:id="@+id/createvoiceicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Sub Chapter"
+        android:text="Create Voice Clip"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
         android:layout_marginLeft="50dp"
@@ -18,55 +18,135 @@
         android:layout_marginBottom="35dp"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sub Chapter Name:"
-        android:layout_above="@+id/subchaptname"
-        android:layout_marginLeft="50dp"
-        android:textSize="18sp"
-        android:layout_marginBottom="5dp"
-        />
-
-    <EditText
-        android:layout_below="@+id/createsubchapticon"
-        android:paddingLeft="15dp"
-        android:paddingBottom="8dp"
-        android:paddingRight="15dp"
-        android:paddingTop="8dp"
-        android:background="@drawable/outline"
-        android:id="@+id/subchaptname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="45dp"
-        android:ems="10"
-        android:hint="Sub Chapter Name"
-        android:inputType="text" />
+    <!--<EditText-->
+        <!--android:layout_below="@+id/createvoiceicon"-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:paddingBottom="8dp"-->
+        <!--android:paddingRight="15dp"-->
+        <!--android:paddingTop="8dp"-->
+        <!--android:background="@drawable/outline"-->
+        <!--android:id="@+id/subchaptname"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginBottom="45dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="Sub Chapter Name"-->
+        <!--android:inputType="text" />-->
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chapter Linked To:"
-        android:layout_above="@+id/chapterlinked"
+        android:text="Student Linked To:"
+        android:layout_above="@+id/stulinkedV"
         android:layout_marginLeft="50dp"
         android:textSize="18sp"
         android:layout_marginBottom="5dp"
         />
 
     <Spinner
+        android:layout_below="@+id/createvoiceicon"
         android:paddingBottom="8dp"
         android:paddingRight="15dp"
         android:paddingTop="8dp"
         android:background="@drawable/outline"
-        android:id="@+id/chapterlinked"
+        android:id="@+id/stulinkedV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_below="@+id/subchaptname"
         android:spinnerMode="dropdown"
+        android:layout_marginBottom="45dp"
         />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/wowvoice1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/stulinkedV"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:layout_above="@+id/translinkedV"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:layout_below="@+id/stulinkedV"
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/translinkedV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="15dp"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/wowvoice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/translinkedV"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/importvoice"
+        android:textStyle="bold|italic"
+        android:textColor="#008080"
+        android:layout_marginStart="195dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IMPORT RECORDING"
+        android:layout_below="@+id/translinkedV"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:layout_marginTop="-1dp"
+        android:id="@+id/voicetxt"
+        android:layout_below="@+id/translinkedV"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="Voice Recording:"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/createtrans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/voicetxt"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/outline"
+        android:text="Create Voice Recording"
+        android:layout_marginBottom="15dp"/>
+
+
 
 </RelativeLayout>
