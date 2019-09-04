@@ -6,71 +6,168 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/navy"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/singinicon"/>
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/login_layoutbackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="345dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableLeft="@drawable/userlogin"
+                    android:drawablePadding="10dp"
+                    android:hint="STUDENT NAME"
+                    android:inputType="text"
+                    android:padding="20dp"
+                    android:textColorHint="#606060"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:hint="PASSWORD"
+                    android:inputType="textPassword"
+                    android:padding="20dp"
+                    android:textColorHint="#606060"
+                    android:textSize="14sp" />
+
+                <ImageButton
+                    android:id="@+id/login"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/btnbackgroundlogin"
+                    android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="520dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Created By Digital Hub"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
+        android:layout_marginTop="90dp"
         android:id="@+id/singinicon"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Sign In"
-        android:layout_centerHorizontal="true"
-        android:textSize="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_above="@+id/editText"
-        android:layout_marginBottom="-355dp"
-        />
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <EditText
-        android:paddingLeft="15dp"
-        android:paddingBottom="8dp"
-        android:paddingRight="15dp"
-        android:paddingTop="8dp"
-        android:background="@drawable/outline"
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="370dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="15dp"
-        android:ems="10"
-        android:hint="Student Name"
-        android:inputType="text" />
+    <!--<ImageView-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@drawable/navy"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_above="@+id/singinicon"/>-->
 
-    <EditText
-        android:paddingLeft="15dp"
-        android:paddingBottom="8dp"
-        android:paddingRight="15dp"
-        android:paddingTop="8dp"
-        android:background="@drawable/outline"
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="15dp"
-        android:layout_below="@+id/editText"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Password"/>
+    <!--<TextView-->
+        <!--android:id="@+id/singinicon"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Sign In"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textSize="40dp"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_above="@+id/editText"-->
+        <!--android:layout_marginBottom="-355dp"-->
+        <!--/>-->
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/outline"
-        android:text="Login" />
+    <!--<EditText-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:paddingBottom="8dp"-->
+        <!--android:paddingRight="15dp"-->
+        <!--android:paddingTop="8dp"-->
+        <!--android:background="@drawable/outline"-->
+        <!--android:id="@+id/editText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginTop="370dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="Student Name"-->
+        <!--android:inputType="text" />-->
+
+    <!--<EditText-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:paddingBottom="8dp"-->
+        <!--android:paddingRight="15dp"-->
+        <!--android:paddingTop="8dp"-->
+        <!--android:background="@drawable/outline"-->
+        <!--android:id="@+id/editText2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_below="@+id/editText"-->
+        <!--android:ems="10"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:hint="Password"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/login"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/editText2"-->
+        <!--android:layout_marginLeft="50dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_marginRight="50dp"-->
+        <!--android:background="@drawable/outline"-->
+        <!--android:text="Login" />-->
 </RelativeLayout>

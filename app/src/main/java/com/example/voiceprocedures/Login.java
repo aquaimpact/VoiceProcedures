@@ -11,13 +11,14 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
     private EditText username,password;
-    private Button login;
+    private ImageButton login;
 
     SharedPreferences preferences;
 
@@ -30,7 +31,7 @@ public class Login extends AppCompatActivity {
 
         username = (EditText) findViewById(R.id.editText);
         password = (EditText) findViewById(R.id.editText2);
-        login = (Button) findViewById(R.id.login);
+        login = (ImageButton) findViewById(R.id.login);
 
         preferences = getSharedPreferences("user_details",MODE_PRIVATE);
 
