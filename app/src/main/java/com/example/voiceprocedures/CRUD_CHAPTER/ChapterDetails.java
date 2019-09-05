@@ -14,7 +14,7 @@ public class ChapterDetails extends AppCompatActivity {
 
     DatabaseHelper db;
     SharedPreferences prf;
-    TextView chaptID, chaptName;
+    TextView chaptID, chaptName, chaptComms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class ChapterDetails extends AppCompatActivity {
         prf = getSharedPreferences("chapterCreationDetails",MODE_PRIVATE);
         chaptID = (TextView) findViewById(R.id.detailchaptID);
         chaptName = (TextView) findViewById(R.id.detailchaptName);
+        chaptComms = (TextView) findViewById(R.id.detailchaptcomm);
 
         String chaptNames = prf.getString("chaptName", null);
 
@@ -37,6 +38,13 @@ public class ChapterDetails extends AppCompatActivity {
         cursor.moveToFirst();
         chaptID.setText(cursor.getString(cursor.getColumnIndex("ID")));
         chaptName.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
+
+        if (cursor.getString(cursor.getColumnIndex("communicationType")).equals("0")){
+            chaptComms.setText("External Communications");
+        }else{
+            chaptComms.setText("On-board Communications");
+        }
+
 
     }
 }

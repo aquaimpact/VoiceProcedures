@@ -33,6 +33,7 @@
         android:paddingBottom="8dp"
         android:paddingRight="15dp"
         android:paddingTop="8dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/outline"
         android:id="@+id/chaptername"
         android:layout_width="match_parent"
@@ -43,11 +44,29 @@
         android:hint="Chapter Name"
         android:inputType="text" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Communication Type:"
+        android:layout_above="@+id/communicationtypes"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:id="@+id/communicationtypes"
+        android:layout_below="@+id/chaptername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
+
     <Button
         android:id="@+id/createChapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chaptername"
+        android:layout_below="@+id/communicationtypes"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="50dp"

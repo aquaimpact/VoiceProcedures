@@ -42,13 +42,30 @@
         android:layout_marginRight="50dp"
         android:ems="10"
         android:hint="Chapter Name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:layout_marginBottom="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chapter Comms:"
+        android:layout_above="@+id/chaptercommsE"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:layout_below="@+id/chaptnameq"
+        android:id="@+id/chaptercommsE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/editchapt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chaptnameq"
+        android:layout_below="@+id/chaptercommsE"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="50dp"

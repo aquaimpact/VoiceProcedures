@@ -11,10 +11,21 @@
                 android:radius="100dp"/>
 
 
-            <gradient android:angle="0"
-                android:startColor="#00a5ff"
-                android:endColor="#00cfff"/>
+            <!--<gradient android:angle="0"-->
+                <!--android:startColor="#00a5ff"-->
+                <!--android:endColor="#00cfff"/>-->
+            <!--<gradient android:angle="0"-->
+            <!--android:startColor="#1f71c6"-->
+            <!--android:endColor="#45a8e2"/>-->
 
-        </shape>
-    </item>
+            <gradient
+                android:angle="0"
+                android:centerX="0%"
+                android:centerColor="#0D93C1"
+                android:startColor="#0C78D5"
+                android:endColor="#0EAFAD"
+                android:type="linear"
+                />
+    </shape>
+</item>
 </ripple>

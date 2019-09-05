@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE studentAccount (ID INTEGER PRIMARY KEY AUTOINCREMENT, studentName Text NOT NULL, appointment Text NOT NULL, department Text NOT NULL, password Text NOT NULL)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE chapters (ID INTEGER PRIMARY KEY AUTOINCREMENT,chapterName Text NOT NULL)");
+        sqLiteDatabase.execSQL("CREATE TABLE chapters (ID INTEGER PRIMARY KEY AUTOINCREMENT,chapterName Text NOT NULL, communicationType INTEGER NOT NULL)"); // 0 -> External | 1 -> Internal
 
         sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID) ON DELETE CASCADE)");
 
@@ -175,11 +175,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    }
 
     //CHAPTERS
-    public long addChapter(String ChapterName){
+    public long addChapter(String ChapterName, Integer communicationType){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("chapterName", ChapterName);
-
+        contentValues.put("communicationType", communicationType);
         long res = db.insert("chapters", null, contentValues);
         db.close();
         return res;
@@ -201,10 +201,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void editChapter(String chaptname, String chaptnames){
+    public void editChapter(String chaptname, String chaptnames, Integer commType){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "UPDATE " + TABLE_NAME2 + " SET " + COL2_1 + " = '"
-                + chaptnames + "' WHERE " + COL2_1  + " = '" + chaptname + "'";
+                + chaptnames + "',communicationType = " + commType + " WHERE " + COL2_1  + " = '" + chaptname + "'";
         db.execSQL(Query) ;
     }
 

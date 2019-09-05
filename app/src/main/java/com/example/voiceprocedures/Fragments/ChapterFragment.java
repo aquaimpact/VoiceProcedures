@@ -40,7 +40,7 @@ public class ChapterFragment extends Fragment {
 
         listView.setAdapter(listAdapter);
 
-        getActivity().setTitle("Chapter Selection");
+        getActivity().setTitle("External Communication Selection");
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
             @Override

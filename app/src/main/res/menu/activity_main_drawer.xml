@@ -7,11 +7,11 @@
         <item
             android:id="@+id/nav_chap"
             android:icon="@drawable/folder"
-            android:title="Chapter Selection" />
+            android:title="External Communication Selection" />
         <item
             android:id="@+id/nav_subchap"
             android:icon="@drawable/treefolder"
-            android:title="Sub-Chapter Selection" />
+            android:title="On-board Communication Selection" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
