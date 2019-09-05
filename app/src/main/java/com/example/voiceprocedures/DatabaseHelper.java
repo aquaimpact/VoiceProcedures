@@ -55,15 +55,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE chapters (ID INTEGER PRIMARY KEY AUTOINCREMENT,chapterName Text NOT NULL)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID))");
+        sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID) ON DELETE CASCADE)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE sections (ID INTEGER PRIMARY KEY AUTOINCREMENT, sectionName Text NOT NULL, subchapterID INTEGER, CONSTRAINT fk_subchapter FOREIGN KEY (subchapterID) REFERENCES subchapters(ID))");
+        sqLiteDatabase.execSQL("CREATE TABLE sections (ID INTEGER PRIMARY KEY AUTOINCREMENT, sectionName Text NOT NULL, subchapterID INTEGER, CONSTRAINT fk_subchapter FOREIGN KEY (subchapterID) REFERENCES subchapters(ID) ON DELETE CASCADE)");
 
         sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, " +
-                "CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID))");
+                "CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID) ON DELETE CASCADE)");
 
         sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, recordingName Text NOT NULL, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP, recordingPath Text NOT NULL" +
-                ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID), CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID))");
+                ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID) ON DELETE CASCADE, CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID) ON DELETE CASCADE)");
+
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        db.execSQL("PRAGMA foreign_keys=ON;");
     }
 
     @Override
@@ -202,15 +208,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Query) ;
     }
 
-    public void deleteChapter(String chaptID, String chaptname){
+    public void deleteChapter(String chaptname){
         SQLiteDatabase db = this.getWritableDatabase();
         // "' AND ID = '" + StuID +
         String Query = "DELETE FROM " + TABLE_NAME2 + " WHERE " + COL2_1 + " = '" + chaptname + "'";
 
-        //FOR SAFE DELETE IN DB
-        String Query2 = "DELETE FROM " + TABLE_NAME3 +" WHERE chapterID ='" + chaptID + "'" ;
+//        //FOR SAFE DELETE IN DB
+//        String Query2 = "DELETE FROM " + TABLE_NAME3 +" WHERE chapterID ='" + chaptID + "'" ;
         db.execSQL(Query);
-        db.execSQL(Query2);
+//        db.execSQL(Query2);
         db.close();
 //        String whre = COL_1 + "=" + StuID ;
 //        return db.delete(TABLE_NAME, whre, null) > 0;
@@ -267,15 +273,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Query) ;
     }
 
-    public void deletesubChapter(String subchaptID, String subchaptname){
+    public void deletesubChapter(String subchaptname){
 //    public void deletesubChapter(String subchaptname){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "DELETE FROM " + TABLE_NAME3 + " WHERE " + COL3_1 + " = '" + subchaptname + "'";
 
-        //FOR SAFE DELETE IN DB
-        String Query2 = "DELETE FROM " + TABLE_NAME4 +" WHERE subchapterID ='" + subchaptID + "'" ;
+//        //FOR SAFE DELETE IN DB
+//        String Query2 = "DELETE FROM " + TABLE_NAME4 +" WHERE subchapterID ='" + subchaptID + "'" ;
         db.execSQL(Query);
-        db.execSQL(Query2);
+//        db.execSQL(Query2);
         db.close();
 
     }
@@ -330,14 +336,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Query) ;
     }
 
-    public void deletesect(String sectname, String sectID){
+    public void deletesect(String sectname){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "DELETE FROM " + TABLE_NAME4 + " WHERE " + COL4_1 + " = '" + sectname + "'";
 
-        //FOR SAFE DELETE IN DB
-        String Query2 = "DELETE FROM " + TABLE_NAME5 +" WHERE sectionID ='" + sectID + "'" ;
+//        //FOR SAFE DELETE IN DB
+//        String Query2 = "DELETE FROM " + TABLE_NAME5 +" WHERE sectionID ='" + sectID + "'" ;
+//        db.execSQL(Query);
         db.execSQL(Query);
-        db.execSQL(Query2);
         db.close();
 
     }

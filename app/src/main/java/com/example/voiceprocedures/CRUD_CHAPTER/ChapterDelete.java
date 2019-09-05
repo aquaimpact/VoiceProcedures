@@ -47,13 +47,11 @@ public class ChapterDelete extends AppCompatActivity {
         cursor.moveToFirst();
         chaptID.setText(cursor.getString(cursor.getColumnIndex("ID")));
         chaptName.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
-
-        final String chaptID = cursor.getString(cursor.getColumnIndex("ID"));
-
+        
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.deleteChapter(chaptID, chaptNames);
+                db.deleteChapter(chaptNames);
 //                db.resetrows();
                 Toast.makeText(ChapterDelete.this, "Successfully Deleted! Returning Back..." , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ChapterDelete.this, MainActivity.class);

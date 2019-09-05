@@ -52,12 +52,10 @@ public class SectionDelete extends AppCompatActivity {
         subchaptLinked.setText(cursor.getString(cursor.getColumnIndex("subchapterName")));
         chaptLinked.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
 
-        final String sectID = cursor.getString(5);
-
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.deletesect(sectNames, sectID);
+                db.deletesect(sectNames);
 //                db.resetrows();
                 Toast.makeText(SectionDelete.this, "Successfully Deleted! Returning Back..." , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SectionDelete.this, MainActivity.class);

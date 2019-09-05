@@ -13,9 +13,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +35,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.List;
 
 import static com.example.voiceprocedures.CRUD_TRANSCRIPT.CreateTranscript.copyFile;
 
@@ -41,6 +45,7 @@ public class TranscriptEdit extends AppCompatActivity {
     private ImageView imgview;
     private Button createtrans;
     private EditText transName, transtext;
+    private Spinner sectionlinked;
     DatabaseHelper db;
 
     SharedPreferences prf;
@@ -65,8 +70,9 @@ public class TranscriptEdit extends AppCompatActivity {
         createtrans = (Button) findViewById(R.id.createtransE);
         transName = (EditText) findViewById(R.id.transnameE);
 
-        prf = getSharedPreferences("transCreationDetails", MODE_PRIVATE);
+        sectionlinked = (Spinner) findViewById(R.id.sectionlinkedE);
 
+        prf = getSharedPreferences("transCreationDetails", MODE_PRIVATE);
 
 
         final String chaptName = prf.getString("transName", null);
@@ -87,7 +93,8 @@ public class TranscriptEdit extends AppCompatActivity {
 
                 imgview.setImageBitmap(myBitmap);
             }
-        }catch (NullPointerException e){
+        }
+        catch (NullPointerException e){
             System.out.println(e);
 //            imgview.setBackgroundResource(R.drawable.noimg);
         }

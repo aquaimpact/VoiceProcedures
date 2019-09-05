@@ -55,6 +55,82 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Section Linked To:"
+                android:layout_above="@+id/sectionlinkedE"
+                android:layout_marginLeft="50dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <Spinner
+                android:paddingBottom="8dp"
+                android:paddingRight="15dp"
+                android:paddingTop="8dp"
+                android:background="@drawable/outline"
+                android:id="@+id/sectionlinkedE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="45dp"
+                android:layout_below="@+id/transnameE"
+                android:spinnerMode="dropdown"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/wowsectsE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_below="@+id/sectionlinkedE"
+                android:layout_marginLeft="50dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sub Chapter Linked To:"
+                android:layout_above="@+id/subchaptlinkedE"
+                android:layout_marginLeft="50dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <Spinner
+                android:visibility="gone"
+                android:paddingBottom="8dp"
+                android:paddingRight="15dp"
+                android:paddingTop="8dp"
+                android:background="@drawable/outline"
+                android:id="@+id/subchaptlinkedE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="45dp"
+                android:layout_below="@+id/sectionlinkedE"
+                android:spinnerMode="dropdown"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/wowsubchaptsE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_below="@+id/sectionlinkedE"
+                android:layout_marginLeft="50dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Transcript Text:"
                 android:layout_above="@+id/transtextE"
                 android:layout_marginLeft="50dp"
@@ -79,7 +155,7 @@
 
             <ScrollView
                 android:id="@+id/transtextE"
-                android:layout_below="@+id/transnameE"
+                android:layout_below="@+id/subchaptlinkedE"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"

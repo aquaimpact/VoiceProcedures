@@ -50,12 +50,10 @@ public class SubChapterDelete extends AppCompatActivity {
         subchaptName.setText(cursor.getString(cursor.getColumnIndex("subchapterName")));
         subchaptLinked.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
 
-        final String chaptID = cursor.getString(2);
-
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.deletesubChapter(chaptID,chaptNames);
+                db.deletesubChapter(chaptNames);
 //                db.resetrows();
                 Toast.makeText(SubChapterDelete.this, "Successfully Deleted! Returning Back..." , Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SubChapterDelete.this, MainActivity.class);
