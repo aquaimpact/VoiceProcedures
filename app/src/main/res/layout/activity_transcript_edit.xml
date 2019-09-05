@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".CRUD_TRANSCRIPT.TranscriptEdit">
 
+
     <TextView
         android:id="@+id/createtransiconE"
         android:layout_width="wrap_content"

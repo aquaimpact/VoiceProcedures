@@ -47,7 +47,7 @@ public class ChapterDelete extends AppCompatActivity {
         cursor.moveToFirst();
         chaptID.setText(cursor.getString(cursor.getColumnIndex("ID")));
         chaptName.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
-        
+
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
