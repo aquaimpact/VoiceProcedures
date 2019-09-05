@@ -1,9 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CRUD_VOICERECORDING.VoiceClipsDelete">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/voicedetailtitleD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Voice Clip"
+        android:textSize="30dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <ScrollView
+        android:layout_below="@+id/voicedetailtitleD"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/IDvoiceD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voice Recording ID:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <TextView
+                android:layout_below="@+id/IDvoiceD"
+                android:id="@+id/detailvoiceIDD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:layout_below="@+id/detailvoiceIDD"
+                android:id="@+id/Linkedpt1D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created By:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <TextView
+                android:layout_below="@+id/Linkedpt1D"
+                android:id="@+id/detailpt1LinkedD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:layout_below="@+id/detailpt1LinkedD"
+                android:id="@+id/Linkedpt2D"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transcript Linked To:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <TextView
+                android:layout_below="@+id/Linkedpt2D"
+                android:id="@+id/detailpt2LinkedD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:layout_below="@+id/detailpt2LinkedD"
+                android:id="@+id/datecreatedD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date and Time Created:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <TextView
+                android:layout_below="@+id/datecreatedD"
+                android:id="@+id/detaildatevoiceD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/pathvoiceD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voice Clip Path:"
+                android:textSize="18sp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detaildatevoiceD"/>
+
+            <TextView
+                android:layout_below="@+id/pathvoiceD"
+                android:id="@+id/detailclipPathD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="15dp"
+                android:text="Transcript Detail Stuff"
+                />
+
+            <TextView
+                android:id="@+id/dsdsdsvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold|italic"
+                android:text="Are You Sure You Want To DELETE This?"
+                android:textSize="20dp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/detailclipPathD"/>
+
+            <Button
+                android:id="@+id/confirmDeletevoice"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_below="@+id/dsdsdsvoice"
+                android:layout_width="150dp"
+                android:background="@drawable/outline"
+                android:layout_height="wrap_content"
+                android:text="YES"
+                android:layout_marginBottom="15dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

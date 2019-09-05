@@ -2,8 +2,8 @@ package com.example.voiceprocedures.CRUD_VOICERECORDING;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,69 +12,77 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.voiceprocedures.CRUD_TRANSCRIPT.CreateTranscript;
+import com.example.voiceprocedures.CRUD_TRANSCRIPT.TranscriptEdit;
 import com.example.voiceprocedures.DatabaseHelper;
 import com.example.voiceprocedures.MainActivity;
 import com.example.voiceprocedures.R;
 import com.example.voiceprocedures.pathURI;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.voiceprocedures.HelperFunctions.copyFile;
 
-public class CreateVoiceClips extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class VoiceClipsEdit extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private TextView importvoice, results1, results2, resultsVoice;
-    private Button createvoice;
     DatabaseHelper db;
+    SharedPreferences prf;
+    private TextView importvoice, results1, results2, resultsVoice;
     private Spinner stulinkedto, translinkedto;
+    Button createvoice;
 
     private String location;
-    //    private EditText transtext;
     public static final int requestcode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_voice_clips);
+        setContentView(R.layout.activity_voice_clips_edit);
 
         db = new DatabaseHelper(this);
 
-        importvoice = findViewById(R.id.importvoice);
-        results1 = findViewById(R.id.wowvoice1);
-        results2 = findViewById(R.id.wowvoice2);
-        stulinkedto = findViewById(R.id.stulinkedV);
-        translinkedto = findViewById(R.id.translinkedV);
-        createvoice = findViewById(R.id.createvoice);
-        resultsVoice = findViewById(R.id.resultsVoice);
+        this.setTitle("Edit Voice Clip Information");
 
-        results1.setText(null);
-        results2.setText(null);
-
-        location = null;
+        prf = getSharedPreferences("voiceCreationDetails",MODE_PRIVATE);
+        importvoice = findViewById(R.id.importvoiceE);
+        results1 = findViewById(R.id.wowvoice1E);
+        results2 = findViewById(R.id.wowvoice2E);
+        stulinkedto = findViewById(R.id.stulinkedVE);
+        translinkedto = findViewById(R.id.translinkedVE);
+        createvoice = findViewById(R.id.createvoiceE);
+        resultsVoice = findViewById(R.id.resultsVoiceE);
 
         List<String> items = db.allstudatas();
-
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         stulinkedto.setOnItemSelectedListener(this);
-        stulinkedto.setAdapter(dataAdapter);
 
-        List<String> items2 = db.alltransdatas();
-
-        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items2);
+        List<String> item2 = db.alltransdatas();
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, item2);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         translinkedto.setOnItemSelectedListener(this);
+
+        final String voiceName = prf.getString("voiceName", null);
+
+        final Cursor cursors = db.voiceDetails(voiceName);
+        cursors.moveToFirst();
+
+        resultsVoice.setText(cursors.getString(cursors.getColumnIndex("recordingPath")));
+
+        location = cursors.getString(cursors.getColumnIndex("recordingPath"));
+
+        int i= items.indexOf(cursors.getString(cursors.getColumnIndex("studentName")));
+        int ii = item2.indexOf(cursors.getString(cursors.getColumnIndex("transcriptName")));
+
+        stulinkedto.setAdapter(dataAdapter);
+        stulinkedto.setSelection(i);
+
         translinkedto.setAdapter(dataAdapter2);
+        translinkedto.setSelection(ii);
 
         importvoice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +96,13 @@ public class CreateVoiceClips extends AppCompatActivity implements AdapterView.O
         createvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                System.out.println("##############");
                 String locations = location;
+
                 String sturesult = results1.getText().toString().trim();
+
+                System.out.println("##############");
                 String transresult = results2.getText().toString().trim();
 
                 Cursor cursor = db.counterVoice(transresult);
@@ -97,81 +110,78 @@ public class CreateVoiceClips extends AppCompatActivity implements AdapterView.O
                 String count = cursor.getString(cursor.getColumnIndex("COUNT(transcriptID)"));
                 String counter;
 
-                File files = new File(locations);
-                if (count.equals("0")) {
-                    counter = "";
-                }else{
-                    counter = "_" + count;
+                String filename = cursors.getString(cursors.getColumnIndex("recordingName"));
+                if (!locations.startsWith("/data/data/com.example.voiceprocedures/VoiceRecordings/")) {
+
+                    if (count.equals("0")) {
+                        counter = "";
+                    }else{
+                        counter = "_" + count;
+                    }
+
+                    File files = new File(locations);
+                    filename = locations.substring(locations.lastIndexOf("/") + 1) + counter;
+                    File files2 = new File("/data/data/com.example.voiceprocedures/VoiceRecordings/" + filename);
+                    try {
+                        copyFile(files, files2);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    locations = files2.getAbsolutePath();
                 }
-
-                String filename = locations.substring(locations.lastIndexOf("/") + 1) + counter;
-
-                File files2 = new File("/data/data/com.example.voiceprocedures/VoiceRecordings/" + filename);
-
-                try {
-                    copyFile(files, files2);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-                locations = files2.getAbsolutePath();
-                System.out.println(locations);
-
 
                 //Confirmation for the equals does not work.
                 if (results1.length() > 0 || results2.length() > 0){
-                    long val = db.addVoice(filename, sturesult, transresult, locations);
 
-                    if(val > 0){
-                        Toast.makeText(CreateVoiceClips.this, "Successfully Created Voice CLip!", Toast.LENGTH_SHORT).show();
+                    String oldfilename = cursors.getString(cursors.getColumnIndex("recordingName"));
 
-                        Intent intent = new Intent(CreateVoiceClips.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                    db.editVoice(oldfilename, filename, sturesult, transresult, locations);
 
-                    }else{
-                        Toast.makeText(CreateVoiceClips.this, "Voice Clip Creation Error!", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(VoiceClipsEdit.this, "Successfully Edited Voice Clip!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(VoiceClipsEdit.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
                 }
                 else{
-                    Toast.makeText(CreateVoiceClips.this, "One of the important FIELDS has not been filled in!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VoiceClipsEdit.this, "One of the important FIELDS has not been filled in!", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
-
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String label = parent.getItemAtPosition(position).toString();
+
         Spinner spin = (Spinner)parent;
+        Spinner spin2 = (Spinner)parent;
         // On selecting a spinner item
-        if(spin.getId() == R.id.stulinkedV){
+        if(spin.getId() == R.id.stulinkedVE){
+
             String stulabel = parent.getItemAtPosition(position).toString();
             Cursor stu = db.studentDetails(stulabel);
             stu.moveToFirst();
+            System.out.println(stu.getString(stu.getColumnIndex("ID")));
             results1.setText(stu.getString(stu.getColumnIndex("ID")));
 //            System.out.println("The Text result1 is:" + results1.getText().toString().trim());
         }
-        else if (spin.getId() == R.id.translinkedV){
+        else if (spin2.getId() == R.id.translinkedVE){
             String translabel = parent.getItemAtPosition(position).toString();
-            System.out.println(translabel);
             Cursor trans = db.transDetails2(translabel);
             trans.moveToFirst();
             results2.setText(trans.getString(trans.getColumnIndex("transcriptID")));
 //            System.out.println("The Text result2 is:" + results2.getText().toString().trim());
         }
-
-        // Showing selected spinner item
-//        Toast.makeText(parent.getContext(), "You selected: " + label,
-//                Toast.LENGTH_LONG).show();
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 
     protected void onActivityResult(int requestCodes, int resultCode, Intent data) {
@@ -195,4 +205,5 @@ public class CreateVoiceClips extends AppCompatActivity implements AdapterView.O
 
 
     }
+
 }

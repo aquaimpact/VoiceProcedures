@@ -513,6 +513,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void deletevoice(String voiceName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        // "' AND ID = '" + StuID +
+        String Query = "DELETE FROM " + TABLE_NAME6 + " WHERE recordingName = '" + voiceName + "'";
+        db.execSQL(Query);
+        db.close();
+//        String whre = COL_1 + "=" + StuID ;
+//        return db.delete(TABLE_NAME, whre, null) > 0;
+    }
+
+    public void editVoice(String oldvoiceName,String voiceName, String stuID, String transID, String recordingPath){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "UPDATE " + TABLE_NAME6 + " SET recordingName = '" + voiceName + "', studentID = " + Integer.parseInt(stuID) + ", transcriptID = " + Integer.parseInt(transID) +", recordingPath = '" + recordingPath + "' " + " WHERE recordingName = '" + oldvoiceName + "'";
+        db.execSQL(Query) ;
+    }
+
     //MAIN FUNCTIONS
     public void DELETE_DB(){
         SQLiteDatabase db = this.getWritableDatabase();

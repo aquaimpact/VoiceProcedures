@@ -22,7 +22,9 @@ import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterDelete;
 import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterDetails;
 import com.example.voiceprocedures.CRUD_SUBCHAPTER.SubChapterEdit;
 import com.example.voiceprocedures.CRUD_VOICERECORDING.CreateVoiceClips;
+import com.example.voiceprocedures.CRUD_VOICERECORDING.VoiceClipsDelete;
 import com.example.voiceprocedures.CRUD_VOICERECORDING.VoiceClipsDetail;
+import com.example.voiceprocedures.CRUD_VOICERECORDING.VoiceClipsEdit;
 import com.example.voiceprocedures.DatabaseHelper;
 import com.example.voiceprocedures.ExpendableListAdapter;
 import com.example.voiceprocedures.R;
@@ -82,13 +84,13 @@ public class VoiceRecordingDBFragment extends Fragment {
 
                 }else if (listHash.get(listDataHeader.get(groupPosition)).get(childPosition) == "Edit"){
 
-//                    Intent intent = new Intent(getActivity(), SubChapterEdit.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(getActivity(), VoiceClipsEdit.class);
+                    startActivity(intent);
 //                        Toast.makeText(getActivity(), "User ID: " + String.valueOf(groupPosition) + " Clicked on: " + listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 
                 }else if (listHash.get(listDataHeader.get(groupPosition)).get(childPosition) == "Delete"){
-//                    Intent intent = new Intent(getActivity(), SubChapterDelete.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(getActivity(), VoiceClipsDelete.class);
+                    startActivity(intent);
 //                        Toast.makeText(getActivity(), "User ID: " + String.valueOf(groupPosition) + " Clicked on: " + listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 
                 }

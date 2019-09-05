@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CRUD_VOICERECORDING.VoiceClipsEdit">
+
+    <TextView
+        android:id="@+id/createvoiceiconE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Voice Clip"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="35dp"
+        />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Student Linked To:"
+        android:layout_above="@+id/stulinkedVE"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:layout_below="@+id/createvoiceiconE"
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/stulinkedVE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="45dp"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/wowvoice1E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/stulinkedVE"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:layout_above="@+id/translinkedVE"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:layout_below="@+id/stulinkedVE"
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/translinkedVE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="15dp"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/wowvoice2E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_below="@+id/translinkedVE"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:id="@+id/importvoiceE"
+        android:textStyle="bold|italic"
+        android:textColor="#008080"
+        android:layout_marginStart="195dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IMPORT RECORDING"
+        android:layout_below="@+id/translinkedVE"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:layout_marginTop="-1dp"
+        android:id="@+id/voicetxtE"
+        android:layout_below="@+id/translinkedVE"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:text="Voice Recording:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_marginLeft="50dp"
+        android:textSize="18dp"
+        android:layout_marginRight="50dp"
+        android:id="@+id/resultsVoiceE"
+        android:layout_below="@+id/voicetxtE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/createvoiceE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/resultsVoiceE"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/outline"
+        android:text="Confirm Voice Recording Edit"
+        android:layout_marginBottom="15dp"/>
+
+</RelativeLayout>
