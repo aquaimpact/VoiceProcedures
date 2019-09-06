@@ -67,11 +67,12 @@
         android:layout_marginRight="50dp"
         android:layout_below="@+id/sectnameE"
         android:spinnerMode="dropdown"
+        android:layout_marginBottom="45dp"
         />
 
 
     <TextView
-
+        android:visibility="gone"
         android:id="@+id/wowSectE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,29 +83,35 @@
         android:layout_marginBottom="5dp"
         />
 
-    <!--<EditText-->
-    <!--android:visibility="gone"-->
-    <!--android:paddingLeft="15dp"-->
-    <!--android:paddingBottom="8dp"-->
-    <!--android:paddingRight="15dp"-->
-    <!--android:paddingTop="8dp"-->
-    <!--android:background="@drawable/outline"-->
-    <!--android:id="@+id/appoint"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginLeft="50dp"-->
-    <!--android:layout_marginRight="50dp"-->
-    <!--android:layout_marginBottom="45dp"-->
-    <!--android:layout_below="@+id/stuname"-->
-    <!--android:ems="10"-->
-    <!--android:inputType="text"-->
-    <!--android:hint="Appointment"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:layout_above="@+id/translollinkedE"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/translollinkedE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@+id/sectlinkedE"
+        android:spinnerMode="dropdown"
+        />
 
     <Button
         android:id="@+id/editsect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sectlinkedE"
+        android:layout_below="@+id/translollinkedE"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="50dp"

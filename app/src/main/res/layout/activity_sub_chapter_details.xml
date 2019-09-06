@@ -77,6 +77,27 @@
         android:text="Sub Chapter Detail Stuff"
         />
 
+    <TextView
+        android:id="@+id/linkedtranssubchapt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptlinked"/>
+
+    <TextView
+        android:layout_below="@+id/linkedtranssubchapt"
+        android:id="@+id/detailtranssubchaptlinked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
 
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.voiceprocedures;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -55,15 +56,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE chapters (ID INTEGER PRIMARY KEY AUTOINCREMENT,chapterName Text NOT NULL, communicationType INTEGER NOT NULL)"); // 0 -> External | 1 -> Internal
 
-        sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID) ON DELETE CASCADE)");
+        sqLiteDatabase.execSQL("CREATE TABLE subchapters (ID INTEGER PRIMARY KEY AUTOINCREMENT, subchapterName Text NOT NULL, chapterID INTEGER, transcriptID INTEGER, " +
+                "CONSTRAINT fk_chapter FOREIGN KEY (chapterID) REFERENCES chapters(ID) ON DELETE CASCADE, CONSTRAINT fk_trans FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID) ON DELETE CASCADE)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE sections (ID INTEGER PRIMARY KEY AUTOINCREMENT, sectionName Text NOT NULL, subchapterID INTEGER, CONSTRAINT fk_subchapter FOREIGN KEY (subchapterID) REFERENCES subchapters(ID) ON DELETE CASCADE)");
+        sqLiteDatabase.execSQL("CREATE TABLE sections (ID INTEGER PRIMARY KEY AUTOINCREMENT, sectionName Text NOT NULL, subchapterID INTEGER, transcriptID INTEGER, " +
+                "CONSTRAINT fk_subchapter FOREIGN KEY (subchapterID) REFERENCES subchapters(ID) ON DELETE CASCADE, CONSTRAINT fk_transss FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID) ON DELETE CASCADE)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text, sectionID INTEGER, " +
-                "CONSTRAINT fk_section FOREIGN KEY (sectionID) REFERENCES sections(ID) ON DELETE CASCADE)");
+        sqLiteDatabase.execSQL("CREATE TABLE transcripts (transcriptID INTEGER PRIMARY KEY AUTOINCREMENT, transcriptName Text NOT NULL, transcript Text NOT NULL, image Text)");
 
-        sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, recordingName Text NOT NULL, studentID INTEGER, transcriptID INTEGER, datetime DATETIME DEFAULT CURRENT_TIMESTAMP, recordingPath Text NOT NULL" +
-                ", CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID) ON DELETE CASCADE, CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID) ON DELETE CASCADE)");
+        sqLiteDatabase.execSQL("CREATE TABLE voiceRecordings (recordingID INTEGER PRIMARY KEY AUTOINCREMENT, recordingName Text NOT NULL, studentID INTEGER, transcriptID INTEGER, " +
+                "datetime DATETIME DEFAULT CURRENT_TIMESTAMP, recordingPath Text NOT NULL, CONSTRAINT fk_student FOREIGN KEY (studentID) REFERENCES studentAccount(ID) ON DELETE CASCADE, " +
+                "CONSTRAINT fk_transcript FOREIGN KEY (transcriptID) REFERENCES transcripts(transcriptID) ON DELETE CASCADE)");
 
     }
 
@@ -75,9 +78,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
-        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME2 );
-        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME3 );
-        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME4 );
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME2);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME3);
+        sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME4);
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME5);
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME6);
     onCreate(sqLiteDatabase);
@@ -239,6 +242,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
+        //TRANS DATA IS ALREADY IN VOICECLIPS
+
     public Cursor allSubChapterData(){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "SELECT * FROM subchapters";
@@ -246,11 +251,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public long addSubChapter(String chaptID, String subChapterName){
+    public long addSubChapter(String chaptID, String subChapterName, @Nullable Integer transcriptID){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("subchapterName", subChapterName);
         contentValues.put("chapterID", Integer.parseInt(chaptID));
+        contentValues.put("transcriptID", transcriptID);
 
         long res = db.insert("subchapters", null, contentValues);
         db.close();
@@ -267,9 +273,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void editSubChapter(String subchaptname1, String subchaptname, String chaptID){
+    public void editSubChapter(String subchaptname1, String subchaptname, String chaptID, Integer transID){
         SQLiteDatabase db = this.getWritableDatabase();
-        String Query = "UPDATE " + TABLE_NAME3 + " SET " + COL3_1 + " = '" + subchaptname + "', chapterID = " + Integer.parseInt(chaptID) + " WHERE "+ COL3_1  + " = '" + subchaptname1 + "'";
+        String Query = "UPDATE " + TABLE_NAME3 + " SET " + COL3_1 + " = '" + subchaptname + "', chapterID = " + Integer.parseInt(chaptID) + ", transcriptID = " + transID + " WHERE "+ COL3_1  + " = '" + subchaptname1 + "'";
         db.execSQL(Query) ;
     }
 
@@ -309,11 +315,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
-    public long addsect(String subchapterID, String sectionName){
+        //TRANS DATA IS ALREADY IN VOICECLIPS
+
+    public long addsect(String subchapterID, String sectionName, Integer transID){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("sectionName", sectionName);
         contentValues.put("subchapterID", Integer.parseInt(subchapterID));
+        contentValues.put("transcriptID", transID);
 
         long res = db.insert("sections", null, contentValues);
         db.close();
@@ -330,9 +339,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public void editSection(String sectname1, String sectname, String subchaptID){
+    public void editSection(String sectname1, String sectname, String subchaptID, Integer transID){
         SQLiteDatabase db = this.getWritableDatabase();
-        String Query = "UPDATE " + TABLE_NAME4 + " SET " + COL4_1 + " = '" + sectname + "', subchapterID = " + Integer.parseInt(subchaptID) + " WHERE "+ COL4_1  + " = '" + sectname1 + "'";
+        String Query = "UPDATE " + TABLE_NAME4 + " SET " + COL4_1 + " = '" + sectname + "', subchapterID = " + Integer.parseInt(subchaptID) + ", transcriptID = " + transID + "  WHERE "+ COL4_1  + " = '" + sectname1 + "'";
         db.execSQL(Query) ;
     }
 
@@ -356,22 +365,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public List<String> allsectiondatas(){
-        List<String> items = new ArrayList<String>();
+    public Cursor transdetailsid(String ID){
         SQLiteDatabase db = this.getWritableDatabase();
-        String Query = "SELECT * FROM sections";
-        Cursor cursor = db.rawQuery(Query, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                items.add(cursor.getString(1));
-            } while (cursor.moveToNext());
-        }
-
-        return items;
+        Cursor cursor = db.rawQuery("SELECT * FROM transcripts WHERE transcriptID = " + Integer.parseInt(ID), null);
+        return cursor;
     }
 
-    public long addTrans(String transName, String transcript, String imgLocation, String sectionID ){
+    public long addTrans(String transName, String transcript, String imgLocation ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("transcriptName", transName);
@@ -380,9 +380,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         contentValues.put("image", imgLocation);
 
-        contentValues.put("sectionID", Integer.parseInt(sectionID));
-
-        long res= db.insert("transcripts", null, contentValues);
+        long res = db.insert("transcripts", null, contentValues);
         db.close();
         return res;
 //        try{

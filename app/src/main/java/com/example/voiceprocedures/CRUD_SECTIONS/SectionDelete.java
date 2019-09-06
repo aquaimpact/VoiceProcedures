@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ public class SectionDelete extends AppCompatActivity {
 
     DatabaseHelper db;
     SharedPreferences prf;
-    TextView sectID, sectName, subchaptLinked, chaptLinked;
+    TextView sectID, sectName, subchaptLinked, chaptLinked, translinked;
     Button confirmDelete;
 
     @Override
@@ -36,6 +37,7 @@ public class SectionDelete extends AppCompatActivity {
         sectName = (TextView) findViewById(R.id.detailsectNameD);
         subchaptLinked = (TextView) findViewById(R.id.detailsectlinkedD);
         chaptLinked = (TextView) findViewById(R.id.detailchaptslinkedD);
+        translinked = findViewById(R.id.detailtransSECtlinkedD);
         confirmDelete = (Button) findViewById(R.id.confirmDeletesectDs);
 
         final String sectNames = prf.getString("sectName", null);
@@ -51,6 +53,20 @@ public class SectionDelete extends AppCompatActivity {
         sectName.setText(cursor.getString(cursor.getColumnIndex("sectionName")));
         subchaptLinked.setText(cursor.getString(cursor.getColumnIndex("subchapterName")));
         chaptLinked.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
+
+        String transid = cursor.getString(cursor.getColumnIndex("transcriptID"));
+
+        if (transid != null){
+            Cursor trans = db.transdetailsid(transid);
+            if (trans.getCount()  == 0){
+                System.out.println("NULL");
+            }
+            trans.moveToFirst();
+            translinked.setText(trans.getString(trans.getColumnIndex("transcriptName")));
+        }else{
+            translinked.setText("This sub-chapter is not directly linked to any transcripts!");
+            translinked.setTextColor(Color.RED);
+        }
 
         confirmDelete.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -97,4 +97,24 @@
         android:text="Section Detail Stuff"
         />
 
+    <TextView
+        android:id="@+id/linkedtransSECT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailchaptlinked"/>
+
+    <TextView
+        android:layout_below="@+id/linkedtransSECT"
+        android:id="@+id/detailtransSECTlinked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Section Detail Stuff"
+        />
+
 </RelativeLayout>

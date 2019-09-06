@@ -78,6 +78,27 @@
         />
 
     <TextView
+        android:id="@+id/linkedtransSCD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:textSize="18sp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/detailsubchaptlinkedD"/>
+
+    <TextView
+        android:layout_below="@+id/linkedtransSCD"
+        android:id="@+id/detailtransSClinkedD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="15dp"
+        android:text="Sub Chapter Detail Stuff"
+        />
+
+    <TextView
         android:id="@+id/dsdsdssubchaptD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,7 +106,7 @@
         android:text="Are You Sure You Want To DELETE This?"
         android:textSize="20dp"
         android:layout_marginLeft="12dp"
-        android:layout_below="@+id/detailsubchaptlinkedD"/>
+        android:layout_below="@+id/detailtransSClinkedD"/>
 
     <Button
         android:id="@+id/confirmDeletesubchaptD"

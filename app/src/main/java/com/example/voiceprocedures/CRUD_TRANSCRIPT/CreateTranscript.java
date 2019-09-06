@@ -51,14 +51,13 @@ import com.opencsv.CSVReader;
 
 import org.w3c.dom.Text;
 
-public class CreateTranscript extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CreateTranscript extends AppCompatActivity {
 
-    private TextView importdata, transtext, importimg, results;
+    private TextView importdata, transtext, importimg;
     private ImageView imgview;
     private Button createtrans;
     private EditText transName;
     DatabaseHelper db;
-    private Spinner sectlinkedto;
 
     private String location;
 //    private EditText transtext;
@@ -81,25 +80,11 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
         createtrans = (Button) findViewById(R.id.createtrans);
         transName = (EditText) findViewById(R.id.transname);
 
-        sectlinkedto = (Spinner) findViewById(R.id.sectionlinked);
 
-        results = (TextView) findViewById(R.id.wowtrans);
-        results.setText(null);
 
         transName.setText(null);
 
         location = null;
-
-        List<String> items = db.allsectiondatas();
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, items);
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        sectlinkedto.setOnItemSelectedListener(this);
-
-        sectlinkedto.setAdapter(dataAdapter);
 
         importdata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +115,6 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
                 String locations = location;
                 String transtxt = transtext.getText().toString().trim();
                 String transNames = transName.getText().toString().trim();
-                String result = results.getText().toString().trim();
 
                 File files = new File(locations);
                 String filename= locations.substring(locations.lastIndexOf("/")+1);
@@ -150,9 +134,9 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
                 String confirm = "Nothing Selected";
 
                 //Confirmation for the equals does not work.
-                if (!confirm.trim().equals(transtxt) || transNames.length() > 0 || result.length() > 0){
+                if (!confirm.trim().equals(transtxt) || transNames.length() > 0){
 
-                    long val = db.addTrans(transNames, transtxt, locations, result);
+                    long val = db.addTrans(transNames, transtxt, locations);
 
                     if(val > 0){
                         Toast.makeText(CreateTranscript.this, "Successfully Created Transcript!", Toast.LENGTH_SHORT).show();
@@ -251,29 +235,6 @@ public class CreateTranscript extends AppCompatActivity implements AdapterView.O
             if (outChannel != null)
                 outChannel.close();
         }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
-        // On selecting a spinner item
-        String label = parent.getItemAtPosition(position).toString();
-
-        Cursor cursor = db.sectDetails(label);
-
-        cursor.moveToFirst();
-
-        results.setText(cursor.getString(cursor.getColumnIndex("ID")));
-
-        // Showing selected spinner item
-//        Toast.makeText(parent.getContext(), "You selected: " + label,
-//                Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
 }

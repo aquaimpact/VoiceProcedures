@@ -27,8 +27,10 @@ public class CreateSection extends AppCompatActivity implements AdapterView.OnIt
 
     EditText sectName;
     TextView results;
-    Spinner subchaptlinkedto;
+    Spinner subchaptlinkedto, translinkedsec;
     Button createsect;
+
+    Integer vals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +41,26 @@ public class CreateSection extends AppCompatActivity implements AdapterView.OnIt
 
         sectName = (EditText) findViewById(R.id.sectname);
         createsect = (Button) findViewById(R.id.createsect);
-
         sectName.setText(null);
-
+        vals = null;
         subchaptlinkedto = (Spinner) findViewById(R.id.subchapterlinked);
-
+        translinkedsec = findViewById(R.id.translinkedsec);
         results = (TextView) findViewById(R.id.wowSect);
         results.setText(null);
 
         db = new DatabaseHelper(this);
 
         List<String> items = db.allsubchapterdatas();
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, items);
-
-
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         subchaptlinkedto.setOnItemSelectedListener(this);
-
         subchaptlinkedto.setAdapter(dataAdapter);
+
+        List<String> item2 = db.alltransdatas();
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, item2);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        translinkedsec.setOnItemSelectedListener(this);
+        translinkedsec.setAdapter(dataAdapter2);
 
         createsect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,7 @@ public class CreateSection extends AppCompatActivity implements AdapterView.OnIt
                 String result = results.getText().toString().trim();
 
                 if (subchaptname.length() > 0 || result.length() > 0){
-                    long val = db.addsect(result,subchaptname);
+                    long val = db.addsect(result,subchaptname, vals);
                     if(val > 0){
                         Toast.makeText(CreateSection.this, "Successfully Created Section!", Toast.LENGTH_SHORT).show();
 
@@ -92,14 +93,24 @@ public class CreateSection extends AppCompatActivity implements AdapterView.OnIt
     public void onItemSelected(AdapterView<?> parent, View view, int position,
                                long id) {
         // On selecting a spinner item
-        String label = parent.getItemAtPosition(position).toString();
+        Spinner spin = (Spinner)parent;
+        // On selecting a spinner item
+        if(spin.getId() == R.id.subchapterlinked){
+            String subchaptlabel = parent.getItemAtPosition(position).toString();
+            Cursor stu = db.subchaptDetails(subchaptlabel);
+            stu.moveToFirst();
+            results.setText(stu.getString(stu.getColumnIndex("ID")));
+//            System.out.println("The Text result1 is:" + results1.getText().toString().trim());
+        }
+        else if (spin.getId() == R.id.translinkedsec){
+            String translabel = parent.getItemAtPosition(position).toString();
+            System.out.println(translabel);
+            Cursor trans = db.transDetails2(translabel);
+            trans.moveToFirst();
+            vals = Integer.parseInt(trans.getString(trans.getColumnIndex("transcriptID")));
 
-        Cursor cursor = db.subchaptDetails(label);
-
-        cursor.moveToFirst();
-
-        results.setText(cursor.getString(2));
-
+//            System.out.println("The Text result2 is:" + results2.getText().toString().trim());
+        }
         // Showing selected spinner item
 //        Toast.makeText(parent.getContext(), "You selected: " + label,
 //                Toast.LENGTH_LONG).show();

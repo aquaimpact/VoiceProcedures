@@ -28,8 +28,9 @@ public class SectionEdit extends AppCompatActivity implements AdapterView.OnItem
     SharedPreferences prf;
     EditText sectName;
     TextView results;
-    Spinner subchaptlinkedto;
+    Spinner subchaptlinkedto, transSUBCHAPTlinkedE;
     Button edit;
+    Integer ii, value2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,19 @@ public class SectionEdit extends AppCompatActivity implements AdapterView.OnItem
         edit = (Button) findViewById(R.id.editsect);
         subchaptlinkedto = (Spinner) findViewById(R.id.sectlinkedE);
         results = (TextView) findViewById(R.id.wowSectE);
+        transSUBCHAPTlinkedE = findViewById(R.id.translollinkedE);
         db = new DatabaseHelper(this);
 
         List<String> items = db.allsubchapterdatas();
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, items);
-
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         subchaptlinkedto.setOnItemSelectedListener(this);
+
+
+        List<String> item2 = db.alltransdatas();
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, item2);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        transSUBCHAPTlinkedE.setOnItemSelectedListener(this);
 
         prf = getSharedPreferences("sectionCreationDetails", MODE_PRIVATE);
 
@@ -71,6 +75,18 @@ public class SectionEdit extends AppCompatActivity implements AdapterView.OnItem
 
         sectName.setText(subchaptNames);
 
+        String transid = cursors.getString(cursors.getColumnIndex("transcriptID"));
+        Cursor trans = db.transdetailsid(transid);
+        if (trans.getCount()  == 0){
+            System.out.println("NULL");
+        }
+        trans.moveToFirst();
+        String txt = trans.getString(trans.getColumnIndex("transcriptName"));
+        ii = item2.indexOf(txt);
+
+        transSUBCHAPTlinkedE.setAdapter(dataAdapter2);
+        transSUBCHAPTlinkedE.setSelection(ii);
+
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +95,7 @@ public class SectionEdit extends AppCompatActivity implements AdapterView.OnItem
 
                 if (chaptnamee.length() > 0) {
 
-                    db.editSection(subchaptNames,chaptnamee, result);
+                    db.editSection(subchaptNames,chaptnamee, result, value2);
 
                     Toast.makeText(SectionEdit.this, "Successfully Edited Section!", Toast.LENGTH_SHORT).show();
 
@@ -99,13 +115,24 @@ public class SectionEdit extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String label = parent.getItemAtPosition(position).toString();
+        Spinner spin = (Spinner)parent;
+        // On selecting a spinner item
+        if(spin.getId() == R.id.sectlinkedE){
+            String subchaptlabel = parent.getItemAtPosition(position).toString();
+            Cursor cursor = db.subchaptDetails(subchaptlabel);
+            cursor.moveToFirst();
+            results.setText(cursor.getString(3));
+//            System.out.println("The Text result1 is:" + results1.getText().toString().trim());
+        }
+        else if (spin.getId() == R.id.translollinkedE){
+            String translabel = parent.getItemAtPosition(position).toString();
+            System.out.println(translabel);
+            Cursor trans = db.transDetails2(translabel);
+            trans.moveToFirst();
+            value2 = Integer.parseInt(trans.getString(trans.getColumnIndex("transcriptID")));
 
-        Cursor cursor = db.subchaptDetails(label);
-
-        cursor.moveToFirst();
-
-        results.setText(cursor.getString(2));
+//            System.out.println("The Text result2 is:" + results2.getText().toString().trim());
+        }
     }
 
     @Override

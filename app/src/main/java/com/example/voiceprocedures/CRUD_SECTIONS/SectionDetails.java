@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ public class SectionDetails extends AppCompatActivity {
 
     DatabaseHelper db;
     SharedPreferences prf;
-    TextView sectID, sectName, subchaptLinked, chaptlinked;
+    TextView sectID, sectName, subchaptLinked, chaptlinked, translinked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,10 @@ public class SectionDetails extends AppCompatActivity {
         sectName = (TextView) findViewById(R.id.detailsectName);
         subchaptLinked = (TextView) findViewById(R.id.detailsectlinked);
         chaptlinked = (TextView) findViewById(R.id.detailchaptlinked);
+        translinked = findViewById(R.id.detailtransSECTlinked);
 
         String sectNames = prf.getString("sectName", null);
         System.out.println(sectNames);
-
 
         Cursor cursor = db.sectDetails(sectNames);
         if (cursor.getCount()  == 0){
@@ -40,17 +41,27 @@ public class SectionDetails extends AppCompatActivity {
         }
         cursor.moveToFirst();
 
+        String transid = cursor.getString(cursor.getColumnIndex("transcriptID"));
+
+        if (transid != null){
+            Cursor trans = db.transdetailsid(transid);
+            if (trans.getCount()  == 0){
+                System.out.println("NULL");
+            }
+            trans.moveToFirst();
+            translinked.setText(trans.getString(trans.getColumnIndex("transcriptName")));
+        }else{
+            translinked.setText("This sub-chapter is not directly linked to any transcripts!");
+            translinked.setTextColor(Color.RED);
+        }
+
 
         sectID.setText(cursor.getString(5));
-        System.out.println("LOL1");
 
         sectName.setText(cursor.getString(cursor.getColumnIndex("sectionName")));
-        System.out.println("LOL2");
 
         subchaptLinked.setText(cursor.getString(cursor.getColumnIndex("subchapterName")));
-        System.out.println("LOL3");
 
         chaptlinked.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
-        System.out.println("LOL4");
     }
 }

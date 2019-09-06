@@ -65,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:layout_marginBottom="45dp"
         android:layout_below="@+id/sectname"
         android:spinnerMode="dropdown"
         />
@@ -80,6 +81,30 @@
         android:layout_marginLeft="50dp"
         android:textSize="18sp"
         android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transcript Linked To:"
+        android:layout_above="@+id/translinkedsec"
+        android:layout_marginLeft="50dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <Spinner
+        android:paddingBottom="8dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/outline"
+        android:id="@+id/translinkedsec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_below="@+id/subchapterlinked"
+        android:spinnerMode="dropdown"
         />
 
     <!--<EditText-->
@@ -103,7 +128,7 @@
         android:id="@+id/createsect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/subchapterlinked"
+        android:layout_below="@+id/translinkedsec"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="50dp"
