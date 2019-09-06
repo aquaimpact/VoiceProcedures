@@ -47,76 +47,13 @@
                 />
 
             <TextView
-                android:layout_below="@+id/detailtransID"
-                android:id="@+id/Linkedtrans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Section Linked To:"
-                android:textSize="18sp"
-                android:layout_marginLeft="12dp"
-                />
-
-            <TextView
-                android:layout_below="@+id/Linkedtrans"
-                android:id="@+id/detailtransLinked"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="15dp"
-                android:text="Transcript Detail Stuff"
-                />
-
-            <TextView
-                android:layout_below="@+id/detailtransLinked"
-                android:id="@+id/Linkedtrans2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sub Chapter Linked To:"
-                android:textSize="18sp"
-                android:layout_marginLeft="12dp"
-                />
-
-            <TextView
-                android:layout_below="@+id/Linkedtrans2"
-                android:id="@+id/detailtransLinked2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="15dp"
-                android:text="Transcript Detail Stuff"
-                />
-
-            <TextView
-                android:layout_below="@+id/detailtransLinked2"
-                android:id="@+id/Linkedtrans3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chapter Linked To:"
-                android:textSize="18sp"
-                android:layout_marginLeft="12dp"
-                />
-
-            <TextView
-                android:layout_below="@+id/Linkedtrans3"
-                android:id="@+id/detailtransLinked3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="15dp"
-                android:text="Transcript Detail Stuff"
-                />
-
-            <TextView
                 android:id="@+id/Nametrans"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Transcript Name:"
                 android:textSize="18sp"
                 android:layout_marginLeft="12dp"
-                android:layout_below="@+id/detailtransLinked3"/>
+                android:layout_below="@+id/detailtransID"/>
 
             <TextView
                 android:layout_below="@+id/Nametrans"

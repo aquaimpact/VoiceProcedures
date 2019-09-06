@@ -21,7 +21,7 @@ public class TranscriptDetails extends AppCompatActivity {
 
     DatabaseHelper db;
     SharedPreferences prf;
-    TextView transID, transName, transTxt, sectLinked, subchaptLinked, chaptLinked;
+    TextView transID, transName, transTxt;
     ImageView transImg;
 
     @Override
@@ -37,9 +37,6 @@ public class TranscriptDetails extends AppCompatActivity {
         transName = (TextView) findViewById(R.id.detailtransName);
         transTxt = (TextView)findViewById(R.id.detailtransTxt);
         transImg = (ImageView) findViewById(R.id.detailtransimg);
-        sectLinked = (TextView) findViewById(R.id.detailtransLinked);
-        subchaptLinked = (TextView) findViewById(R.id.detailtransLinked2);
-        chaptLinked = (TextView) findViewById(R.id.detailtransLinked3);
 
         String transNames = prf.getString("transName", null);
 
@@ -51,11 +48,6 @@ public class TranscriptDetails extends AppCompatActivity {
         transID.setText(cursor.getString(cursor.getColumnIndex("transcriptID")));
         transName.setText(cursor.getString(cursor.getColumnIndex("transcriptName")));
         transTxt.setText(cursor.getString(cursor.getColumnIndex("transcript")));
-        sectLinked.setText(cursor.getString(cursor.getColumnIndex("sectionName")));
-        subchaptLinked.setText(cursor.getString(cursor.getColumnIndex("subchapterName")));
-        chaptLinked.setText(cursor.getString(cursor.getColumnIndex("chapterName")));
-
-
 
         try {
             File imgfile = new File(cursor.getString(cursor.getColumnIndex("image")));

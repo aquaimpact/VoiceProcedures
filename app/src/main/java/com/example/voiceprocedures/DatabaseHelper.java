@@ -411,7 +411,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor transDetails(@NonNull String transname){
         SQLiteDatabase db = this.getWritableDatabase();
 //      "' AND ID = '" + StuID +
-        String Query = "SELECT * FROM (((transcripts INNER JOIN sections ON transcripts.sectionID = sections.ID) INNER JOIN subchapters ON sections.subchapterID = subchapters.ID) INNER JOIN chapters ON chapters.ID = subchapters.chapterID) WHERE transcriptName ='" + transname + "'";
+        String Query = "SELECT * FROM transcripts WHERE transcriptName ='" + transname + "'";
 //      String Query2 = "SELECT * FROM chapters WHERE chapterName = '" + chaptname + "'";
 //      String Query = "SELECT * FROM studentAccount WHERE ID = '" + StuID + "'";
         Cursor cursor = db.rawQuery(Query,null);

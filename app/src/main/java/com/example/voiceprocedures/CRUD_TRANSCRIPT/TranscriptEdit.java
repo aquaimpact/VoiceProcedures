@@ -45,7 +45,6 @@ public class TranscriptEdit extends AppCompatActivity {
     private ImageView imgview;
     private Button createtrans;
     private EditText transName, transtext;
-    private Spinner sectionlinked;
     DatabaseHelper db;
 
     SharedPreferences prf;
@@ -69,8 +68,6 @@ public class TranscriptEdit extends AppCompatActivity {
 
         createtrans = (Button) findViewById(R.id.createtransE);
         transName = (EditText) findViewById(R.id.transnameE);
-
-        sectionlinked = (Spinner) findViewById(R.id.sectionlinkedE);
 
         prf = getSharedPreferences("transCreationDetails", MODE_PRIVATE);
 
