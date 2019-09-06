@@ -204,7 +204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void editChapter(String chaptname, String chaptnames, Integer commType){
         SQLiteDatabase db = this.getWritableDatabase();
         String Query = "UPDATE " + TABLE_NAME2 + " SET " + COL2_1 + " = '"
-                + chaptnames + "',communicationType = " + commType + " WHERE " + COL2_1  + " = '" + chaptname + "'";
+                + chaptnames + "', communicationType = " + commType + " WHERE " + COL2_1  + " = '" + chaptname + "'";
         db.execSQL(Query) ;
     }
 

@@ -60,9 +60,8 @@ public class ChapterEdit extends AppCompatActivity implements AdapterView.OnItem
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         commstype.setOnItemSelectedListener(this);
-        commstype.setAdapter(dataAdapter);
 
-        int i= items.indexOf(cursor.getString(cursor.getColumnIndex("communicationType")));
+        int i= Integer.parseInt(cursor.getString(cursor.getColumnIndex("communicationType")));
 
         System.out.println(i);
 
