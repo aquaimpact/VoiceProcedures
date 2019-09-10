@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.voiceprocedures.RecyclerView.Chapters;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -193,6 +195,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String Query = "SELECT * FROM chapters";
         Cursor cursor = db.rawQuery(Query, null);
         return cursor;
+    }
+
+    public List<Chapters> allchapterdataM(int commtype){
+        List<Chapters> items = new ArrayList<Chapters>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM chapters WHERE communicationType = " + commtype;
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Chapters chapters = new Chapters();
+                chapters.setChaptname(cursor.getString(cursor.getColumnIndex("chapterName")));
+                chapters.setComtype(cursor.getString(cursor.getColumnIndex("communicationType")));
+                chapters.setId(cursor.getString(cursor.getColumnIndex("ID")));
+
+                Cursor cursor2 = db.rawQuery("SELECT COUNT(chapterID) FROM subchapters WHERE chapterID =" + Integer.parseInt(cursor.getString(cursor.getColumnIndex("ID"))), null);
+
+                cursor2.moveToFirst();
+                chapters.setNumberOfSubchapter(cursor2.getString(cursor2.getColumnIndex("COUNT(chapterID)")));
+
+                items.add(chapters);
+            } while (cursor.moveToNext());
+        }
+
+        return items;
     }
 
     public Cursor chaptDetails(@NonNull String chaptname){
