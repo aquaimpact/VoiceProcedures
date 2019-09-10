@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.voiceprocedures.RecyclerView.Chapters;
+import com.example.voiceprocedures.RecyclerView.Subchapt;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -276,6 +277,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String Query = "SELECT * FROM subchapters";
         Cursor cursor = db.rawQuery(Query, null);
         return cursor;
+    }
+
+    public List<Subchapt> allsubchapterdataM(String chaptID){
+        List<Subchapt> items = new ArrayList<Subchapt>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM subchapters WHERE chapterID = " + Integer.parseInt(chaptID);
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Subchapt subchapters = new Subchapt();
+                subchapters.setID(cursor.getString(cursor.getColumnIndex("ID")));
+
+                Cursor cursor2 = db.rawQuery("SELECT * FROM chapters WHERE ID = " + chaptID, null);
+                cursor2.moveToFirst();
+                subchapters.setChaptlinked(cursor2.getString(cursor2.getColumnIndex("chapterName")));
+                subchapters.setSubchaptname(cursor.getString(cursor.getColumnIndex("subchapterName")));
+
+                Cursor cursor3 = db.rawQuery("SELECT COUNT(subchapterID) FROM sections WHERE subchapterID =" + Integer.parseInt(cursor.getString(cursor.getColumnIndex("ID"))), null);
+
+                cursor3.moveToFirst();
+                subchapters.setNoOfSects(cursor3.getString(cursor3.getColumnIndex("COUNT(subchapterID)")));
+
+                items.add(subchapters);
+            } while (cursor.moveToNext());
+        }
+
+        return items;
     }
 
     public long addSubChapter(String chaptID, String subChapterName, @Nullable Integer transcriptID){
