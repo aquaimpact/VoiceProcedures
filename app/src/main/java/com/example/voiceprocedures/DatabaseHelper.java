@@ -294,6 +294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor2.moveToFirst();
                 subchapters.setChaptlinked(cursor2.getString(cursor2.getColumnIndex("chapterName")));
                 subchapters.setSubchaptname(cursor.getString(cursor.getColumnIndex("subchapterName")));
+                subchapters.setTransid(cursor.getString(cursor.getColumnIndex("transcriptID")));
 
                 Cursor cursor3 = db.rawQuery("SELECT COUNT(subchapterID) FROM sections WHERE subchapterID =" + Integer.parseInt(cursor.getString(cursor.getColumnIndex("ID"))), null);
 
@@ -386,6 +387,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor2.moveToFirst();
                 sect.setChaptlinked(cursor2.getString(cursor2.getColumnIndex("subchapterName")));
                 sect.setSubchaptname(cursor.getString(cursor.getColumnIndex("sectionName")));
+                sect.setTransid(cursor.getString(cursor.getColumnIndex("transcriptID")));
 
                 items.add(sect);
             } while (cursor.moveToNext());

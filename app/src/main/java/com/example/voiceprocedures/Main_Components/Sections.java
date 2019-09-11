@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.voiceprocedures.DatabaseHelper;
 import com.example.voiceprocedures.R;
 import com.example.voiceprocedures.RecyclerView.RecyclerViewAdapterSubchapt;
+import com.example.voiceprocedures.RecyclerView.Subchapt;
+
+import java.util.List;
 
 public class Sections extends AppCompatActivity implements RecyclerViewAdapterSubchapt.onsSubChaptClickListener{
 
@@ -44,6 +48,15 @@ public class Sections extends AppCompatActivity implements RecyclerViewAdapterSu
 
     @Override
     public void onSubChaptClick(int position) {
+        List<Subchapt> items = db.allsectdataM(subchaptID);
+        Subchapt main = items.get(position);
+        String id = main.getID();
+        String transID = main.getTransid();
+        String name = main.getSubchaptname();
 
+        Intent intent = new Intent(this, DescriptionTranscript.class);
+        intent.putExtra("ID", transID);
+        intent.putExtra("NAME", name);
+        startActivity(intent);
     }
 }

@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.voiceprocedures.Main_Components.DescriptionTranscript;
+
 public class Login extends AppCompatActivity {
 
     private EditText username,password;

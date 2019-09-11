@@ -9,6 +9,15 @@ public class Subchapt implements Serializable {
     String chaptlinked;
     String noOfSects;
     String ID;
+    String transid;
+
+    public String getTransid() {
+        return transid;
+    }
+
+    public void setTransid(String transid) {
+        this.transid = transid;
+    }
 
     public String getID() {
         return ID;

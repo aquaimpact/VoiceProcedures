@@ -52,6 +52,7 @@ public class Subchapters extends AppCompatActivity implements RecyclerViewAdapte
         List<Subchapt> items = db.allsubchapterdataM(chaptID);
         Subchapt main = items.get(position);
         String id = main.getID();
+        String transID = main.getTransid();
         String name = main.getSubchaptname();
         String count = main.getNoOfSects();
         Integer counts = Integer.parseInt(count);
@@ -59,6 +60,11 @@ public class Subchapters extends AppCompatActivity implements RecyclerViewAdapte
         if(counts > 0){
             Intent intent = new Intent(this, Sections.class);
             intent.putExtra("ID", id);
+            intent.putExtra("NAME", name);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(this, DescriptionTranscript.class);
+            intent.putExtra("ID", transID);
             intent.putExtra("NAME", name);
             startActivity(intent);
         }

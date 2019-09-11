@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main_Components.Sections"></activity>
+        <activity android:name=".Main_Components.DescriptionTranscript"></activity>
+        <activity android:name=".Main_Components.Sections" />
         <activity android:name=".Main_Components.Subchapters" />
         <activity android:name=".CRUD_VOICERECORDING.VoiceClipsEdit" />
         <activity android:name=".CRUD_VOICERECORDING.VoiceClipsDelete" />
