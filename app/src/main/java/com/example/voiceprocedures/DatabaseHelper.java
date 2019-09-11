@@ -371,6 +371,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
+    public List<Subchapt> allsectdataM(String subchaptID){
+        List<Subchapt> items = new ArrayList<Subchapt>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String Query = "SELECT * FROM sections WHERE subchapterID = " + Integer.parseInt(subchaptID);
+        Cursor cursor = db.rawQuery(Query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Subchapt sect = new Subchapt();
+                sect.setID(cursor.getString(cursor.getColumnIndex("ID")));
+
+                Cursor cursor2 = db.rawQuery("SELECT * FROM subchapters WHERE ID = " + subchaptID, null);
+                cursor2.moveToFirst();
+                sect.setChaptlinked(cursor2.getString(cursor2.getColumnIndex("subchapterName")));
+                sect.setSubchaptname(cursor.getString(cursor.getColumnIndex("sectionName")));
+
+                items.add(sect);
+            } while (cursor.moveToNext());
+        }
+
+        return items;
+    }
+
         //TRANS DATA IS ALREADY IN VOICECLIPS
 
     public long addsect(String subchapterID, String sectionName, Integer transID){
