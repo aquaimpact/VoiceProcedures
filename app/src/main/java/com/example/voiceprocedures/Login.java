@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.voiceprocedures.Main_Components.DescriptionTranscript;
+import com.example.voiceprocedures.Main_Components.FinishScreen;
+import com.example.voiceprocedures.Main_Components.PracticePage;
 
 public class Login extends AppCompatActivity {
 

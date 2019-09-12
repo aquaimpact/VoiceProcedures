@@ -126,10 +126,10 @@ public class TranscriptEdit extends AppCompatActivity {
                 String transtxt = transtext.getText().toString().trim();
                 String transNames = transName.getText().toString().trim();
 
-                if (!locations.startsWith("/data/data/com.example.voiceprocedures/images/")) {
+                if (!locations.startsWith("/data/data/com.example.voiceprocedures/imgs/")) {
                     File files = new File(locations);
                     String filename = locations.substring(locations.lastIndexOf("/") + 1);
-                    File files2 = new File("/data/data/com.example.voiceprocedures/images/" + filename);
+                    File files2 = new File("/data/data/com.example.voiceprocedures/imgs/" + filename);
                     try {
                         copyFile(files, files2);
                     } catch (Exception e) {
@@ -147,7 +147,7 @@ public class TranscriptEdit extends AppCompatActivity {
 
                     db.editTrans(chaptName, transNames, transtxt, locations);
 
-                    Toast.makeText(TranscriptEdit.this, "Successfully Edited Chapter!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TranscriptEdit.this, "Successfully Edited Transcript!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(TranscriptEdit.this, MainActivity.class);
                     startActivity(intent);

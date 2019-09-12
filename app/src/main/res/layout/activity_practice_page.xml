@@ -9,19 +9,164 @@
     <ImageView
         android:id="@+id/imgstrans"
         android:layout_width="wrap_content"
-        android:layout_height="224dp"
+        android:layout_height="190dp"
         android:layout_margin="20dp"
         android:adjustViewBounds="true"
-        android:background="@drawable/placeholder" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Speaker A:"
-        android:layout_below="@+id/imgstrans"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="17dp"
         />
+
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_below="@+id/imgstrans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/P1s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speaker A:"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="17dp"
+                />
+
+            <TextView
+                android:background="@drawable/borders4"
+                android:id="@+id/txt1"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/P1s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:padding="5dp"
+                android:text="I require / MV ... requires \nP1: ~  boat for hospital transfer. \nP1: ~  radio medical advice.
+\nP1: ~  helicopter with doctor (to pick up person(s))."
+                />
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/txt1"
+                android:id="@+id/recordingbarforp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true">
+
+                <Button
+                    android:id="@+id/rec1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Record"/>
+
+                <Button
+                    android:id="@+id/play1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playback" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/P2s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speaker B:"
+                android:layout_below="@+id/recordingbarforp1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="17dp"
+                />
+
+            <TextView
+                android:background="@drawable/borders4"
+                android:textSize="15sp"
+
+                android:id="@+id/txtp2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/P2s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="I require / MV ... requires \nP1: ~  boat for hospital transfer. \nP1: ~  radio medical advice.
+\nP1: ~  helicopter with doctor (to pick up person(s))."
+                />
+
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/txtp2"
+                android:id="@+id/recordingbarforp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true">
+
+                <Button
+                    android:id="@+id/rec2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Record"/>
+
+                <Button
+                    android:id="@+id/play2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playback" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_below="@+id/recordingbarforp2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/recordingbarforp2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:text="Back" />
+
+                    <Button
+                        android:id="@+id/next"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Continue   >"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
 
 </RelativeLayout>
