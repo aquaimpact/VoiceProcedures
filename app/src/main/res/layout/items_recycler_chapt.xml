@@ -75,6 +75,7 @@
                     android:text="Number of Sub-Chapters" />
 
                 <TextView
+                    android:gravity="center"
                     android:id="@+id/NUMBEROFSUBS"
                     android:textSize="35dp"
                     android:layout_width="50dp"

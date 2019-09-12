@@ -53,10 +53,13 @@ public class Sections extends AppCompatActivity implements RecyclerViewAdapterSu
         String id = main.getID();
         String transID = main.getTransid();
         String name = main.getSubchaptname();
-
-        Intent intent = new Intent(this, DescriptionTranscript.class);
-        intent.putExtra("ID", transID);
-        intent.putExtra("NAME", name);
-        startActivity(intent);
+        if (transID != null) {
+            Intent intent = new Intent(this, DescriptionTranscript.class);
+            intent.putExtra("ID", transID);
+            intent.putExtra("NAME", name);
+            startActivity(intent);
+        }else{
+            Toast.makeText(this, "There is nothing here! Coming soon", Toast.LENGTH_SHORT).show();
+        }
     }
 }
