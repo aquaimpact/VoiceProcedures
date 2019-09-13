@@ -56,16 +56,17 @@ public class FinishScreen extends AppCompatActivity {
                 String p11;
                 String[] p2;
                 String p22;
-                if(line.substring(0, 2).equals("P1")){
-                    if(line.substring(3, 5).trim().equals("~")){
+                if(line.substring(1, 3).equals("P1")){
+                    if(line.substring(4, 6).trim().equals("~")){
                         p1 = line.split(" ~");
                         p11 = "\t\t\t" + "- " + p1[1] + "\n";
                         lol += p1[0] + p11;
                     }else {
                         lol += line + "\n";
+
                     }
-                }else if (line.substring(0, 2).equals("P2")){
-                    if(line.substring(3, 5).trim().equals("~")){
+                }else if (line.substring(1, 3).equals("P2")){
+                    if(line.substring(4, 6).trim().equals("~")){
                         p2 = line.split(" ~");
                         p22 = "\t\t\t" + "- " + p2[1] + "\n";
                         lol += p2[0] + p22;
@@ -74,12 +75,17 @@ public class FinishScreen extends AppCompatActivity {
                     }
                 }
                 line = reader.readLine();
+
+
+
             }
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        lol = lol.replace("S", "");
+        lol = lol.replace("A", "");
 
 //        System.out.println(lol);
         finaltrans.setText(lol);

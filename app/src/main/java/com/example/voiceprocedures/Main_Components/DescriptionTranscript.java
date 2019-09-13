@@ -69,8 +69,8 @@ public class DescriptionTranscript extends AppCompatActivity {
                 String p11;
                 String[] p2;
                 String p22;
-                if(line.substring(0, 2).equals("P1")){
-                    if(line.substring(3, 5).trim().equals("~")){
+                if(line.substring(1, 3).equals("P1")){
+                    if(line.substring(4, 6).trim().equals("~")){
                         p1 = line.split(" ~");
                         p11 = "\t\t\t" + "- " + p1[1] + "\n";
                         lol += p1[0] + p11;
@@ -78,8 +78,8 @@ public class DescriptionTranscript extends AppCompatActivity {
                         lol += line + "\n";
 
                     }
-                }else if (line.substring(0, 2).equals("P2")){
-                    if(line.substring(3, 5).trim().equals("~")){
+                }else if (line.substring(1, 3).equals("P2")){
+                    if(line.substring(4, 6).trim().equals("~")){
                         p2 = line.split(" ~");
                         p22 = "\t\t\t" + "- " + p2[1] + "\n";
                         lol += p2[0] + p22;
@@ -88,13 +88,19 @@ public class DescriptionTranscript extends AppCompatActivity {
                     }
                 }
                 line = reader.readLine();
+
+
+
             }
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
-
+        lol = lol.replace("S", "");
+        lol = lol.replace("A", "");
+//        lol = lol.replace("P1", "Speaker A");
+//        lol = lol.replace("P2", "Speaker B");
 //        System.out.println(lol);
         transtxt.setText(lol);
 
