@@ -54,6 +54,9 @@ public class PracticePage extends AppCompatActivity {
 
     Integer numberoftimes;
 
+    List<SpeakerClass> speaker;
+    List<AnswererClass> answerer;
+
     private MediaRecorder mediaRecorder;
 
     @Override
@@ -74,11 +77,10 @@ public class PracticePage extends AppCompatActivity {
         next = findViewById(R.id.next);
         P1s = findViewById(R.id.P1s);
         P2s = findViewById(R.id.P2s);
-        mediaRecorder = new MediaRecorder();
 
         db = new DatabaseHelper(this);
 
-        numberoftimes = 0;
+        numberoftimes = 1;
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
@@ -125,27 +127,6 @@ public class PracticePage extends AppCompatActivity {
             imgstrans.setBackgroundResource(R.drawable.lol1);
         }
 
-        final boolean finish = true;
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Boolean result = files();
-
-                if (!result){
-                    return;
-                }
-
-                if (finish){
-                    Intent intent = new Intent(PracticePage.this, FinishScreen.class);
-                    intent.putExtra("ID", transID);
-                    intent.putExtra("NAME", name);
-                    intent.putExtra("speak",usertype );
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
-
         rec1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -184,8 +165,8 @@ public class PracticePage extends AppCompatActivity {
         BufferedReader reader = new BufferedReader(new StringReader(in));
         BufferedReader reader2 = new BufferedReader(new StringReader(in));
 
-        List<SpeakerClass> speaker = new ArrayList<SpeakerClass>();
-        List<AnswererClass> answerer = new ArrayList<AnswererClass>();
+        speaker = new ArrayList<SpeakerClass>();
+        answerer = new ArrayList<AnswererClass>();
 
         try{
 
@@ -226,58 +207,136 @@ public class PracticePage extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        for(int i = 0; i < speaker.size(); i++){
-            SpeakerClass firstspeaker = speaker.get(i);
+        for(int i = 0; i < answerer.size(); i++){
+            AnswererClass firstspeaker = answerer.get(i);
             String speakerName = firstspeaker.getSpeaker();
             String txt = firstspeaker.getText();
-            int linked = firstspeaker.getMainspeakerlinkedto();
+            int linked = firstspeaker.getLinedtospeak();
 
 //            System.out.println(speakerName + ": " + txt);
 //            System.out.println(linked);
         }
 
-        for(int i = 0; i < answerer.size(); i++){
-            AnswererClass second_speaker = answerer.get(i);
-            String speaker2 = second_speaker.getSpeaker();
-            String txt2 = second_speaker.getText();
-            int linked2 = second_speaker.getLinedtospeak();
-//
-            System.out.println(speaker2 + ": " + txt2);
-            System.out.println(linked2);
+        for(int i = 0; i< speaker.size(); i++){
+            SpeakerClass sec = speaker.get(i);
+            String speakerName = sec.getSpeaker();
+            String txt = sec.getText();
+            int linked = sec.getMainspeakerlinkedto();
 
+            System.out.println(speakerName + ": " + txt);
+            System.out.println(linked);
         }
 
+        MyResult results12 = poupulate(speaker, answerer);
+        speaker = results12.getFirst();
+        answerer = results12.getSecond();
 
+        final boolean finish = true;
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Boolean result = files();
+                }catch (Exception e){
+                    Toast.makeText(PracticePage.this, "You have not recorded anything!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(speaker.size() == 0 && answerer.size() == 0){
+                    next.setText("Finish");
+                    Intent intent = new Intent(PracticePage.this, FinishScreen.class);
+                    intent.putExtra("ID", transID);
+                    intent.putExtra("NAME", name);
+                    intent.putExtra("speak",usertype );
+                    startActivity(intent);
+                    finish();
+                }else{
+                    next.setText("Next");
+                    numberoftimes += 1;
+                    MyResult lol = poupulate(speaker, answerer);
+                    speaker = lol.getFirst();
+                    answerer = lol.getSecond();
+
+
+                }
+            }
+        });
+
+    }
+
+    private MyResult poupulate(List<SpeakerClass> speakerlist, List<AnswererClass> answererList){
+
+        String fulltxt = "";
+        String fulltxt2 = "";
+        List<SpeakerClass> lol1 = new ArrayList<>();
+        List<AnswererClass> lol2 = new ArrayList<>();
+
+
+        for (SpeakerClass speak : speakerlist){
+            if(speak.getMainspeakerlinkedto() == numberoftimes){
+                String speakname = speak.getSpeaker();
+                String txt = speak.getText();
+
+                String combine = speakname + ": " + txt + "\n";
+                fulltxt += combine;
+
+            }else{
+                lol1.add(speak);
+            }
+        }
+
+        txt1.setText(fulltxt);
+
+        for (AnswererClass ans : answererList){
+            if (ans.getLinedtospeak() == numberoftimes){
+                String ansname = ans.getSpeaker();
+                String anstxt = ans.getText();
+
+                String combine2 = ansname + ": " + anstxt + "\n";
+                fulltxt2 += combine2;
+            }else{
+                lol2.add(ans);
+            }
+        }
+
+        txtp2.setText(fulltxt2);
+
+        return new MyResult(lol1, lol2);
     }
 
     private void stop() {
 
         mediaRecorder.stop();
         mediaRecorder.release();
+        mediaRecorder = null;
 
         Toast.makeText(this, "Successfully recorded! Click continue to save!", Toast.LENGTH_SHORT).show();
 
     }
 
     private void record(){
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        file = new File(path, "/Audioclip.mp3");
+
+        System.out.println(file);
+
+        mediaRecorder.setOutputFile(file);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
+
         try {
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-
-            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            file = new File(path, "/Audioclip.mp3");
-
-            System.out.println(file);
-
-            mediaRecorder.setOutputFile(file);
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
-
             mediaRecorder.prepare();
-
-            mediaRecorder.start();
-        }catch (Exception e){
+        }catch (Exception e) {
             e.printStackTrace();
         }
+
+        mediaRecorder.start();
+
+        Toast.makeText(this, "Recording Started!", Toast.LENGTH_SHORT).show();
+
     }
 
     private boolean files(){
@@ -323,6 +382,24 @@ public class PracticePage extends AppCompatActivity {
         }else{
             Toast.makeText(PracticePage.this, "Voice Clip Creation Error!", Toast.LENGTH_SHORT).show();
             return false;
+        }
+    }
+
+    final class MyResult{
+        private final List<SpeakerClass> first;
+        private final List<AnswererClass> second;
+
+        public MyResult(List<SpeakerClass> first,List<AnswererClass> second){
+            this.first = first;
+            this.second = second;
+        }
+
+        public List<SpeakerClass> getFirst() {
+            return first;
+        }
+
+        public List<AnswererClass> getSecond() {
+            return second;
         }
     }
 }
