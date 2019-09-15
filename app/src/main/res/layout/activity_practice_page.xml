@@ -68,7 +68,7 @@
                     android:id="@+id/play1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Playback" />
+                    android:text="Start Playback" />
 
             </LinearLayout>
 
@@ -120,7 +120,7 @@
                     android:id="@+id/play2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Playback" />
+                    android:text="Start Playback" />
 
             </LinearLayout>
 
