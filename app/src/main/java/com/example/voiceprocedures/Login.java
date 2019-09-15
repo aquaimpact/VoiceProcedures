@@ -39,6 +39,8 @@ public class Login extends AppCompatActivity {
 
         preferences = getSharedPreferences("user_details",MODE_PRIVATE);
 
+        preferences.edit().clear().commit();
+
         db = new DatabaseHelper(this);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +61,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                     Intent homeintent = new Intent(Login.this, MainActivity.class);
                     startActivity(homeintent);
+                    finish();
                     username.setText(null);
                     password.setText(null);
                 }else {

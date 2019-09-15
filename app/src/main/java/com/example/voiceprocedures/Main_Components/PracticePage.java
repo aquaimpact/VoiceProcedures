@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -46,7 +47,7 @@ public class PracticePage extends AppCompatActivity {
     TextView txt1, txtp2, P1s, P2s;
     Button rec1, play1, rec2, play2, back, next;
     LinearLayout recordingbarforp1, recordingbarforp2;
-    Integer recs1, recs2;
+    Integer recs1, recs2, plays1, plays2;
     File file;
     String transID;
     SharedPreferences prf;
@@ -58,6 +59,7 @@ public class PracticePage extends AppCompatActivity {
     List<AnswererClass> answerer;
 
     private MediaRecorder mediaRecorder;
+    private MediaPlayer player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,8 @@ public class PracticePage extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
 
-        numberoftimes = 1;
+
+        numberoftimes = 0;
 
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, PackageManager.PERMISSION_GRANTED);
@@ -93,6 +96,8 @@ public class PracticePage extends AppCompatActivity {
 
         recs1 = 0;
         recs2 = 0;
+        plays1 = 0;
+        plays2 = 0;
 
         prf = getSharedPreferences("user_details",MODE_PRIVATE);
 
@@ -157,12 +162,42 @@ public class PracticePage extends AppCompatActivity {
             }
         });
 
+        play1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(plays1 == 0){
+                    play1.setText("Stop Playback");
+                    play();
+                    plays1 = 1;
+                }else{
+                    play1.setText("Start Playback");
+                    stopPlaying();
+                    plays1 = 0;
+                }
+            }
+        });
+
+        play2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(plays2 == 0){
+                    play2.setText("Stop Playback");
+                    play();
+                    plays2 = 1;
+                }else{
+                    play2.setText("Start Playback");
+                    stopPlaying();
+                    plays2 = 0;
+                }
+            }
+        });
+
 
 
         // Main Transcript Function
         final String in = cursor.getString(cursor.getColumnIndex("transcript"));
         Integer counter = 0;
-        BufferedReader reader = new BufferedReader(new StringReader(in));
+        final BufferedReader reader = new BufferedReader(new StringReader(in));
         BufferedReader reader2 = new BufferedReader(new StringReader(in));
 
         speaker = new ArrayList<SpeakerClass>();
@@ -173,14 +208,11 @@ public class PracticePage extends AppCompatActivity {
             String line = reader.readLine();
             reader2.readLine();
             String nxtline = reader2.readLine();
+            System.out.println(line.substring(0,1));
 
             while (line != null){
 
                 if(line.substring(0,1).trim().equals("S")){
-
-                    if (!nxtline.substring(0,1).trim().equals("S")){
-                        counter += 1;
-                    }
 
                     SpeakerClass speakerClass = new SpeakerClass();
                     speakerClass.setSpeaker(line.substring(1, 3));
@@ -196,6 +228,10 @@ public class PracticePage extends AppCompatActivity {
                     answererClass.setLinedtospeak(counter);
 
                     answerer.add(answererClass);
+
+                    if (!nxtline.substring(0,1).trim().equals("A")){
+                        counter += 1;
+                    }
                     
                 }
 
@@ -231,14 +267,17 @@ public class PracticePage extends AppCompatActivity {
         speaker = results12.getFirst();
         answerer = results12.getSecond();
 
-        final boolean finish = true;
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     Boolean result = files();
+                    if(!result){
+                        return;
+                    }
                 }catch (Exception e){
                     Toast.makeText(PracticePage.this, "You have not recorded anything!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                     return;
                 }
 
@@ -261,11 +300,9 @@ public class PracticePage extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private MyResult poupulate(List<SpeakerClass> speakerlist, List<AnswererClass> answererList){
-
         String fulltxt = "";
         String fulltxt2 = "";
         List<SpeakerClass> lol1 = new ArrayList<>();
@@ -372,11 +409,16 @@ public class PracticePage extends AppCompatActivity {
         String sturesult = prf.getString("ID", null);
 
         System.out.println(sturesult);
-
-        long val = db.addVoice(filename, sturesult, transID, locations);
-
+        long val = 0;
+        try {
+            val = db.addVoice(filename, sturesult, transID, locations);
+        }catch (NumberFormatException e){
+            Log.e("DB ERROR!", e.toString());
+            Toast.makeText(PracticePage.this, "You DO NOT have the student rights to record!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(val > 0){
-            Toast.makeText(PracticePage.this, "Successfully Created Voice CLip!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(PracticePage.this, "Successfully Created Voice Clip!", Toast.LENGTH_SHORT).show();
             return true;
 
         }else{
@@ -401,5 +443,32 @@ public class PracticePage extends AppCompatActivity {
         public List<AnswererClass> getSecond() {
             return second;
         }
+    }
+
+    private void play(){
+        player = new MediaPlayer();
+        try{
+            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+            player.setDataSource(path + "/Audioclip.mp3");
+            player.prepare();
+            player.start();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                plays1 = 0;
+                play1.setText("Start Playback");
+                plays2 = 0;
+                play2.setText("Start Playback");
+            }
+        });
+    }
+
+    private void stopPlaying(){
+        player.release();
+        player = null;
     }
 }
